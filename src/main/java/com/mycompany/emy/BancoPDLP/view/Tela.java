@@ -2,6 +2,7 @@ package com.mycompany.emy.BancoPDLP.view;
 
 import com.mycompany.emy.BancoPDLP.model.dto.ContaPoupanca;
 import com.mycompany.emy.BancoPDLP.model.service.ContaBancariaService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class Tela extends javax.swing.JFrame {
 
+    @Autowired
     private ContaBancariaService contaBancariaService;
 
     public Tela(ContaBancariaService contaBancariaService) {
@@ -272,8 +274,6 @@ public class Tela extends javax.swing.JFrame {
 
     private void cadastrarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarButtonActionPerformed
 
-        ContaBancariaService service = new ContaBancariaService();
-
         String agencia = agenciaInput.getText();
         String conta = contaInput.getText();
         String nome = nomeInput.getText();
@@ -281,7 +281,7 @@ public class Tela extends javax.swing.JFrame {
 
         if (contaPoupancaButton.isSelected()) {
             ContaPoupanca contaPoupanca = new ContaPoupanca(agencia, conta, contaPoupancaButton.getText(), nome, saldo);
-            service.cadastrarContaBancaria(contaPoupanca);
+            contaBancariaService.cadastrarContaBancaria(contaPoupanca);
         }
 
     }
@@ -310,7 +310,4 @@ public class Tela extends javax.swing.JFrame {
     private javax.swing.JLabel tipoContaLabel;
     // End of variables declaration//
 
-//    public static void main(String args[]) {
-//
-//}
 }

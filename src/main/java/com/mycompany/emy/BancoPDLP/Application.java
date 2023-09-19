@@ -1,31 +1,44 @@
 package com.mycompany.emy.BancoPDLP;
 
-import com.mycompany.emy.BancoPDLP.view.GuiInitializer;
+import com.mycompany.emy.BancoPDLP.view.Tela;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
 public class Application {
 
     public static void main(String[] args) {
+        System.setProperty("java.awt.headless", "false");
         ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
 
-        // Obter a instância de GuiInitializer do contexto Spring
-        GuiInitializer guiInitializer = context.getBean(GuiInitializer.class);
+        // Obter a instância da classe Tela do contexto Spring
+        Tela tela = context.getBean(Tela.class);
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Tela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Tela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Tela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Tela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
 
-        // Configurar o modo headless
-        System.setProperty("java.awt.headless", "false");
-
-        // Iniciar o aplicativo Spring Boot
-        new SpringApplicationBuilder(Application.class)
-                .headless(false) // Também é necessário definir isso para o Spring Boot
-                .run(args);
-        // Inicializar a interface gráfica
-        guiInitializer.initializeGui();
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(() -> {
+            tela.setVisible(true);
+        });
     }
+}
 
-    }
+
 
 
