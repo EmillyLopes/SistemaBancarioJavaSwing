@@ -6,26 +6,22 @@ package com.mycompany.emy.BancoPDLP.view;
 
 import com.mycompany.emy.BancoPDLP.model.service.ContaBancariaService;
 import java.awt.Component;
+import java.awt.Container;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
-import org.springframework.beans.factory.annotation.Autowired;
 
 @org.springframework.stereotype.Component
 public class TelaaOperacoes extends javax.swing.JFrame {
 
-     @Autowired
-    private ContaBancariaService contaBancariaService;
-    
-      public TelaaOperacoes(ContaBancariaService contaBancariaService) {
-        this.contaBancariaService = contaBancariaService;
+
+    public TelaaOperacoes(ContaBancariaService contaBancariaService) {
     }
-      
+
     public TelaaOperacoes() {
         initComponents();
     }
- 
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -518,23 +514,23 @@ public class TelaaOperacoes extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
+    private void limparCamposRecursivamente(Container container) {
+        Component[] components = container.getComponents();
+        for (Component component : components) {
+            if (component instanceof JTextField) {
+                ((JTextField) component).setText("");
+            } else if (component instanceof Container) {
+                // Se for um container, chame a função recursivamente
+                limparCamposRecursivamente((Container) component);
+            }
+        }
+    }
+
     private void limparCampos(ActionEvent e) {
         Component source = (Component) e.getSource();
         if (source instanceof JButton && "Cancelar".equals(((JButton) source).getText())) {
-            // Vamos percorrer todos os componentes no JPanel telaContainer
-            Component[] components = telaContainer.getComponents();
-            for (Component component : components) {
-                if (component instanceof JPanel) {
-                    // Dentro de cada JPanel, percorra todos os campos de texto e limpe-os
-                    Component[] innerComponents = ((JPanel) component).getComponents();
-                    for (Component innerComponent : innerComponents) {
-                        if (innerComponent instanceof JTextField) {
-                            ((JTextField) innerComponent).setText("");
-                        }
-                    }
-                }
-            }
+            // Chame a função recursiva para limpar todos os campos de texto
+            limparCamposRecursivamente(telaContainer);
         }
     }
     private void saqueCancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saqueCancelarButtonActionPerformed
@@ -593,7 +589,6 @@ public class TelaaOperacoes extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_transferirButtonActionPerformed
 
- 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel contaContainer;

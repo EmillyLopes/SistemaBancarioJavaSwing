@@ -52,7 +52,7 @@
                       <Component id="saldoContainer" alignment="0" max="32767" attributes="2"/>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                          <Component id="tabOperacoes" pref="372" max="32767" attributes="0"/>
+                          <Component id="tabOperacoes" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
