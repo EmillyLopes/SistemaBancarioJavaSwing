@@ -48,6 +48,7 @@ public class ContaBancariaMapper {
             throw new ContaBancariaNotFoundException("Tipo da conta inválido");
         }
 
+        contaBancariaDTO.setId(contaBancariaEntity.getId());
         contaBancariaDTO.setAgencia(contaBancariaEntity.getAgencia());
         contaBancariaDTO.setConta(contaBancariaEntity.getConta());
         contaBancariaDTO.setNome(contaBancariaEntity.getNome());
