@@ -8,6 +8,7 @@ import com.mycompany.emy.BancoPDLP.model.exception.SaldoInsuficienteException;
 import com.mycompany.emy.BancoPDLP.model.exception.TransferenciaException;
 import com.mycompany.emy.BancoPDLP.model.exception.ValorInvalidoException;
 import com.mycompany.emy.BancoPDLP.model.repository.ContaBancariaRepository;
+import com.mycompany.emy.BancoPDLP.model.utils.Constantes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,7 +80,7 @@ public class ContaBancariaService {
         logger.info("ContaBancariaService - consultarSaldo: Procurando saldo: Agencia: - {}, Conta: - {}", agencia, numeroConta);
         ContaBancariaEntity contaEntity = contaBancariaRepository.findByAgenciaAndConta(agencia, numeroConta)
                         .orElseThrow(() -> new ContaBancariaNotFoundException("Conta bancária não encontrada"));
-        logger.info("ContaBancariaService - consultarSaldo: Conta achada: - {} Saldo Atual - {}",contaEntity, contaEntity.getSaldo());
+        logger.info("ContaBancariaService - consultarSaldo: Conta achada: - {} Saldo Atual - R${}",contaEntity, contaEntity.getSaldo());
 
         return contaEntity.getSaldo();
     }
@@ -93,11 +94,20 @@ public class ContaBancariaService {
             throw new ValorInvalidoException("O valor do depósito deve ser maior que zero");
         }
 
-        BigDecimal novoSaldo = contaBancariaEntity.getSaldo().add(valor);
-        contaBancariaEntity.setSaldo(novoSaldo);
+        if (Constantes.CONTA_PJ.getValue().equals(contaBancariaEntity.getTipoConta())) {
+            // Se for uma conta PJ, aplicar o acréscimo de 1.5%
+            BigDecimal valorAcrescido = valor.multiply(new BigDecimal("1.015"));
+            BigDecimal novoSaldo = contaBancariaEntity.getSaldo().add(valorAcrescido);
+            contaBancariaEntity.setSaldo(novoSaldo);
+        } else {
+            // Para outras contas, simplesmente somar o valor ao saldo
+            BigDecimal novoSaldo = contaBancariaEntity.getSaldo().add(valor);
+            contaBancariaEntity.setSaldo(novoSaldo);
+        }
         logger.info("ContaBancariaService - realizarDeposito: Saldo atual - R${} da conta - {} ", contaBancariaEntity.getSaldo(), contaBancariaEntity);
 
         contaBancariaRepository.save(contaBancariaEntity);
+
     }
 
     @Transactional
@@ -111,12 +121,19 @@ public class ContaBancariaService {
         if (valor.compareTo(contaBancariaEntity.getSaldo()) > 0) {
             throw new SaldoInsuficienteException("Saldo insuficiente para realizar o saque");
         }
-
-        BigDecimal novoSaldo = contaBancariaEntity.getSaldo().subtract(valor);
-        contaBancariaEntity.setSaldo(novoSaldo);
+        if (Constantes.CONTA_PF.getValue().equals(contaBancariaEntity.getTipoConta())) {
+            // Se for uma conta PF, aplicar o desconto de 1.25%
+            BigDecimal valorDescontado = valor.multiply(new BigDecimal("0.9875"));
+            contaBancariaEntity.setSaldo(contaBancariaEntity.getSaldo().subtract(valorDescontado));
+        } else {
+            // Para outras contas, simplesmente subtrair o valor do saldo
+            BigDecimal novoSaldo = contaBancariaEntity.getSaldo().subtract(valor);
+            contaBancariaEntity.setSaldo(novoSaldo);
+        }
         logger.info("ContaBancariaService - realizarSaque: Saldo atual - R${} da conta - {} ", contaBancariaEntity.getSaldo(), contaBancariaEntity);
 
         contaBancariaRepository.save(contaBancariaEntity);
+        operacaoContaService.salvarOperacao();
     }
 
     @Transactional
