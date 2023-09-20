@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 public class ContaBancariaEntity implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @Column(name = "agencia")
