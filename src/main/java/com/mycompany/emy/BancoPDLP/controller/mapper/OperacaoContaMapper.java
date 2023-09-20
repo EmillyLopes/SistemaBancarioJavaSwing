@@ -27,11 +27,11 @@ public class OperacaoContaMapper {
     public OperacaoContaEntity convertOperacaoContaDtoToEntity(OperacaoContaDTO operacaoContaDto) {
         logger.info("OperacaoContaMapper - OperacaoContaEntity: Realizando conversão do DTO - {} para a Entity",operacaoContaDto);
         OperacaoContaEntity operacaoContaEntity = new OperacaoContaEntity();
-        operacaoContaEntity.setId(operacaoContaDto.getId());
         operacaoContaEntity.setDataHora(LocalDateTime.now());
         operacaoContaEntity.setObservacao(operacaoContaDto.getObservacao());
         operacaoContaEntity.setTpOperacao(operacaoContaDto.getTpOperacao());
         operacaoContaEntity.setValor(operacaoContaDto.getValor());
+
         logger.info("OperacaoContaMapper - OperacaoContaEntity: Entity - {}", operacaoContaEntity);
         return operacaoContaEntity;
     }
