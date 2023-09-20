@@ -4,7 +4,10 @@
     <facet type="jpa" name="JPA">
       <configuration>
         <setting name="validation-enabled" value="true" />
-        <datasource-mapping />
+        <datasource-mapping>
+          <factory-entry name="BancoPersistence" value="8d5330e5-852c-42c6-81c0-f97630760846" />
+          <factory-entry name="entityManagerFactory" value="8d5330e5-852c-42c6-81c0-f97630760846" />
+        </datasource-mapping>
         <naming-strategy-map />
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/resources/persistence.xml" />
       </configuration>

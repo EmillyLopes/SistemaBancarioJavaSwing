@@ -1,7 +1,8 @@
 package com.mycompany.emy.BancoPDLP.view;
 
-import com.mycompany.emy.BancoPDLP.model.dto.ContaPoupanca;
+import com.mycompany.emy.BancoPDLP.model.dto.ContaPoupancaDTO;
 import com.mycompany.emy.BancoPDLP.model.service.ContaBancariaService;
+import com.mycompany.emy.BancoPDLP.model.service.OperacaoContaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,8 +16,12 @@ public class Tela extends javax.swing.JFrame {
     @Autowired
     private ContaBancariaService contaBancariaService;
 
-    public Tela(ContaBancariaService contaBancariaService) {
+    @Autowired
+    private OperacaoContaService operacaoContaService;
+
+    public Tela(ContaBancariaService contaBancariaService, OperacaoContaService operacaoContaService ) {
         this.contaBancariaService = contaBancariaService;
+        this.operacaoContaService = operacaoContaService;
     }
 
     public Tela() {
@@ -271,16 +276,26 @@ public class Tela extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_contaInputActionPerformed
 
-    private void cadastrarButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                
-
+    private void cadastrarButtonActionPerformed(java.awt.event.ActionEvent evt) {
         String agencia = agenciaInput.getText();
         String conta = contaInput.getText();
         String nome = nomeInput.getText();
         Double saldo = Double.valueOf(saldoInput.getText());
+        String tipoConta = "";
 
         if (contaPoupancaButton.isSelected()) {
-            ContaPoupanca contaPoupanca = new ContaPoupanca(agencia, conta, contaPoupancaButton.getText(), nome, saldo);
-            contaBancariaService.cadastrarContaBancaria(contaPoupanca);
+            tipoConta = contaPoupancaButton.getText();
+        } else if (contaCorrentePfButton.isSelected()) {
+            tipoConta = contaCorrentePfButton.getText();
+        } else if (contaCorrentePJButton.isSelected()) {
+            tipoConta = contaCorrentePJButton.getText();
+        }
+
+        if (!tipoConta.isEmpty()) {
+            ContaBancariaDTO contaBancariaDTO = new ContaBancariaDTO(agencia, conta, tipoConta, nome, saldo);
+            contaBancariaService.cadastrarContaBancaria(contaBancariaDTO);
+        } else {
+            // Lógica para lidar com nenhum tipo de conta selecionado
         }
 
     }

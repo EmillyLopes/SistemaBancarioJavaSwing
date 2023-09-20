@@ -86,20 +86,15 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="cadastroSaldoContainer" alignment="0" max="32767" attributes="2"/>
-                                          <Component id="cadastroContaContainer" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="cadastroNomeContainer" alignment="0" min="-2" max="-2" attributes="2"/>
-                                      </Group>
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Component id="cadastroButtonContainer" alignment="1" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="cadastroButtonContainer" max="32767" attributes="0"/>
+                                  <Component id="cadastroSaldoContainer" alignment="0" max="32767" attributes="2"/>
+                                  <Component id="cadastroContaContainer" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="cadastroNomeContainer" alignment="1" max="32767" attributes="2"/>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace pref="25" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -139,7 +134,7 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="cadastroNomeLabel" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="CadastroNomeInput" pref="325" max="32767" attributes="2"/>
+                                  <Component id="CadastroNomeInput" max="32767" attributes="2"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -245,7 +240,7 @@
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="ccadastroContaPoupancaButton" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="cadastroContaPoupancaButton" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                                                   <Component id="cadastroContaCorrentePJButton" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
@@ -273,7 +268,7 @@
                                   <Component id="cadastroTipoContaLabel" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="ccadastroContaPoupancaButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cadastroContaPoupancaButton" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="cadastroContaCorrentePJButton" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="cadastroContaCorrentePfButton" alignment="3" max="32767" attributes="0"/>
                                   </Group>
@@ -287,9 +282,6 @@
                           <Properties>
                             <Property name="toolTipText" type="java.lang.String" value="XXXX"/>
                           </Properties>
-                          <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cadastroAgenciaInputActionPerformed"/>
-                          </Events>
                         </Component>
                         <Component class="javax.swing.JLabel" name="cadastroAgenciaLabel">
                           <Properties>
@@ -305,16 +297,13 @@
                           <Properties>
                             <Property name="toolTipText" type="java.lang.String" value="XXX"/>
                           </Properties>
-                          <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cadastroContaInputActionPerformed"/>
-                          </Events>
                         </Component>
                         <Component class="javax.swing.JLabel" name="cadastroTipoContaLabel">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Tipo de conta:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JRadioButton" name="ccadastroContaPoupancaButton">
+                        <Component class="javax.swing.JRadioButton" name="cadastroContaPoupancaButton">
                           <Properties>
                             <Property name="selected" type="boolean" value="true"/>
                             <Property name="text" type="java.lang.String" value="Conta Poupan&#xe7;a"/>
@@ -434,7 +423,7 @@
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace pref="38" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="tabOperacoes" pref="0" max="32767" attributes="0"/>
+                                  <Component id="tabOperacoes" max="32767" attributes="0"/>
                                   <Component id="saldoContainer1" max="32767" attributes="2"/>
                               </Group>
                               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
@@ -468,9 +457,9 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" max="-2" attributes="0"/>
-                                  <Component id="saldoLabel1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="saldoAtualLabel" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="saldoInput1" min="-2" pref="314" max="-2" attributes="0"/>
+                                  <Component id="saldoAtuallnput" min="-2" pref="314" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                               </Group>
                           </Group>
@@ -480,8 +469,8 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="saldoLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="saldoInput1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="saldoAtualLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="saldoAtuallnput" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="32767" attributes="0"/>
                               </Group>
@@ -489,12 +478,12 @@
                         </DimensionLayout>
                       </Layout>
                       <SubComponents>
-                        <Component class="javax.swing.JLabel" name="saldoLabel1">
+                        <Component class="javax.swing.JLabel" name="saldoAtualLabel">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Saldo atual:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="saldoInput1">
+                        <Component class="javax.swing.JTextField" name="saldoAtuallnput">
                           <Properties>
                             <Property name="toolTipText" type="java.lang.String" value="R$0,00"/>
                           </Properties>
@@ -645,9 +634,6 @@
                                   <Properties>
                                     <Property name="toolTipText" type="java.lang.String" value="XXXX"/>
                                   </Properties>
-                                  <Events>
-                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saqueAgenciaInputActionPerformed"/>
-                                  </Events>
                                 </Component>
                                 <Component class="javax.swing.JLabel" name="saqueAgenciaLabel">
                                   <Properties>
@@ -663,9 +649,6 @@
                                   <Properties>
                                     <Property name="toolTipText" type="java.lang.String" value="XXX"/>
                                   </Properties>
-                                  <Events>
-                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saqueContaInputActionPerformed"/>
-                                  </Events>
                                 </Component>
                               </SubComponents>
                             </Container>
@@ -713,9 +696,6 @@
                                   <Properties>
                                     <Property name="toolTipText" type="java.lang.String" value="XXXX"/>
                                   </Properties>
-                                  <Events>
-                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saqueValorInputActionPerformed"/>
-                                  </Events>
                                 </Component>
                               </SubComponents>
                             </Container>
@@ -750,9 +730,9 @@
                                       <Component id="depositoContaContainer" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                                       <Component id="depositoValorContainer" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace pref="51" max="32767" attributes="0"/>
+                                      <EmptySpace pref="47" max="32767" attributes="0"/>
                                       <Component id="depositoContainerButton" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -774,7 +754,7 @@
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="depositoAgenciaLabel" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="depositoAgenciaInput" pref="107" max="32767" attributes="2"/>
+                                          <Component id="depositoAgenciaInput" pref="97" max="32767" attributes="2"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Component id="depositoContaLabel" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
@@ -803,9 +783,6 @@
                                   <Properties>
                                     <Property name="toolTipText" type="java.lang.String" value="XXXX"/>
                                   </Properties>
-                                  <Events>
-                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="depositoAgenciaInputActionPerformed"/>
-                                  </Events>
                                 </Component>
                                 <Component class="javax.swing.JLabel" name="depositoAgenciaLabel">
                                   <Properties>
@@ -821,9 +798,6 @@
                                   <Properties>
                                     <Property name="toolTipText" type="java.lang.String" value="XXX"/>
                                   </Properties>
-                                  <Events>
-                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="depositoContaInputActionPerformed"/>
-                                  </Events>
                                 </Component>
                               </SubComponents>
                             </Container>
@@ -837,9 +811,9 @@
                                           <Component id="depositoButton" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="32767" attributes="0"/>
                                           <Component id="depositoVoltarButton" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="depositoCancelarButton" min="-2" pref="76" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="depositoCancelarButton" min="-2" pref="96" max="-2" attributes="0"/>
+                                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                 </DimensionLayout>
@@ -929,9 +903,6 @@
                                   <Properties>
                                     <Property name="toolTipText" type="java.lang.String" value="XXXX"/>
                                   </Properties>
-                                  <Events>
-                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="depositoValorInputActionPerformed"/>
-                                  </Events>
                                 </Component>
                               </SubComponents>
                             </Container>
@@ -966,7 +937,7 @@
                                       <Component id="transferenciaValorContainer" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="tansferenciaContainerButton" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace pref="28" max="32767" attributes="0"/>
+                                      <EmptySpace pref="27" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -1017,9 +988,6 @@
                                   <Properties>
                                     <Property name="toolTipText" type="java.lang.String" value="XXXX"/>
                                   </Properties>
-                                  <Events>
-                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="transferenciaAgenciaOrigemInputActionPerformed"/>
-                                  </Events>
                                 </Component>
                                 <Component class="javax.swing.JLabel" name="transferenciaAgenciaOrigemLabel">
                                   <Properties>
@@ -1035,9 +1003,6 @@
                                   <Properties>
                                     <Property name="toolTipText" type="java.lang.String" value="XXX"/>
                                   </Properties>
-                                  <Events>
-                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="transferenciaContaOrigemInputActionPerformed"/>
-                                  </Events>
                                 </Component>
                               </SubComponents>
                             </Container>
@@ -1086,9 +1051,6 @@
                                   <Properties>
                                     <Property name="toolTipText" type="java.lang.String" value="XXXX"/>
                                   </Properties>
-                                  <Events>
-                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="transferenciaAgenciaDestinoInputActionPerformed"/>
-                                  </Events>
                                 </Component>
                                 <Component class="javax.swing.JLabel" name="transferenciaAgenciaDestinoLabel">
                                   <Properties>
@@ -1104,9 +1066,6 @@
                                   <Properties>
                                     <Property name="toolTipText" type="java.lang.String" value="XXX"/>
                                   </Properties>
-                                  <Events>
-                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="transferenciaContaDestinoInputActionPerformed"/>
-                                  </Events>
                                 </Component>
                               </SubComponents>
                             </Container>
@@ -1135,7 +1094,7 @@
                                               <Component id="transferenciaVoltarButton" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="transferenciaCancelarButton" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace pref="25" max="32767" attributes="0"/>
+                                          <EmptySpace min="0" pref="26" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                 </DimensionLayout>
@@ -1209,9 +1168,6 @@
                                   <Properties>
                                     <Property name="toolTipText" type="java.lang.String" value="XXXX"/>
                                   </Properties>
-                                  <Events>
-                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="transferenciaValorInputActionPerformed"/>
-                                  </Events>
                                 </Component>
                               </SubComponents>
                             </Container>

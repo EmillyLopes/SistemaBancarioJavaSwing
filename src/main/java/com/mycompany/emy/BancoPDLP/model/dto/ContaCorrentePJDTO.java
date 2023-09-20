@@ -1,15 +1,16 @@
 package com.mycompany.emy.BancoPDLP.model.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
-public class ContaCorrentePJ extends ContaBancaria {
+public class ContaCorrentePJDTO extends ContaBancariaDTO {
 
-    public ContaCorrentePJ(String agencia, String conta, String tipo, String nome, double saldo) {
-        super(agencia, conta, tipo, nome, saldo);
+    public ContaCorrentePJDTO(String agencia, String conta, String tipoConta, String nome, double saldo) {
+        super(agencia, conta, tipoConta, nome, saldo);
     }
 
     @Override

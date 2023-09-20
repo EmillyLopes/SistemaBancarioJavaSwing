@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public abstract class ContaBancaria {
+public abstract class ContaBancariaDTO {
 
     protected String agencia;
     protected String conta;
