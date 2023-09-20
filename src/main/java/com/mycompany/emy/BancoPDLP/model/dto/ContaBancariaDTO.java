@@ -23,15 +23,5 @@ public abstract class ContaBancariaDTO {
         this.nome = nome;
         this.saldo = saldo;
     }
-    public void depositar(double valor) {
-        saldo += valor;
-    }
-    public void sacar(double valor) {
-        saldo -= valor;
-    }
-
-    public double consultarSaldo() {
-        return saldo;
-    }
 
 }

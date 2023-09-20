@@ -13,9 +13,4 @@ public class ContaPoupancaDTO extends ContaBancariaDTO {
         super(agencia, conta, tipoConta, nome, saldo);
     }
 
-    public void calcularJuros(double taxaDeJurosMensal) {
-        double juros = saldo * (taxaDeJurosMensal / 100.0);
-        saldo += juros;
-    }
-
 }
