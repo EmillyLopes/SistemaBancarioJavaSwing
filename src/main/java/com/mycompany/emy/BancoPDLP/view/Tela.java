@@ -17,7 +17,6 @@ public class Tela extends javax.swing.JFrame {
 
     public Tela(ContaBancariaService contaBancariaService) {
         this.contaBancariaService = contaBancariaService;
-
     }
 
     public Tela() {
@@ -272,7 +271,7 @@ public class Tela extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_contaInputActionPerformed
 
-    private void cadastrarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarButtonActionPerformed
+    private void cadastrarButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                
 
         String agencia = agenciaInput.getText();
         String conta = contaInput.getText();
