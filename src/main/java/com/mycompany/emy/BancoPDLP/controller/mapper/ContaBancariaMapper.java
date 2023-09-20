@@ -22,6 +22,7 @@ public class ContaBancariaMapper {
     public ContaBancariaEntity convertContaBancariaDtoTOEntity(ContaBancariaDTO contaBancariaDTO) {
         logger.info("ContaBancariaMapper - convertContaBancariaDtoTOEntity: Realizando conversão do DTO - {} para a Entity",contaBancariaDTO);
         ContaBancariaEntity contaEntity = new ContaBancariaEntity();
+        contaEntity.setId(contaBancariaDTO.getId());
         contaEntity.setAgencia(contaBancariaDTO.getAgencia());
         contaEntity.setConta(contaBancariaDTO.getConta());
         contaEntity.setNome(contaBancariaDTO.getNome());
@@ -54,7 +55,7 @@ public class ContaBancariaMapper {
         contaBancariaDTO.setNome(contaBancariaEntity.getNome());
         contaBancariaDTO.setSaldo(doubleValue(contaBancariaEntity.getSaldo()));
         contaBancariaDTO.setTipoConta(contaBancariaEntity.getTipoConta());
-        logger.info("ContaBancariaMapper - convertContaBancariaEntityTODto: DTO - {}  ",contaBancariaDTO);
+        logger.info("ContaBancariaMapper - convertContaBancariaEntityTODto: DTO - {}  ", contaBancariaDTO);
 
         return contaBancariaDTO;
     }

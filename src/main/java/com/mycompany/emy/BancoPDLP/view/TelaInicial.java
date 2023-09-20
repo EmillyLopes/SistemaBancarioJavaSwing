@@ -4,6 +4,7 @@ import com.mycompany.emy.BancoPDLP.model.dto.ContaBancariaDTO;
 import com.mycompany.emy.BancoPDLP.model.dto.ContaCorrentePFDTO;
 import com.mycompany.emy.BancoPDLP.model.dto.ContaCorrentePJDTO;
 import com.mycompany.emy.BancoPDLP.model.dto.ContaPoupancaDTO;
+import com.mycompany.emy.BancoPDLP.model.exception.ContaBancariaNotFoundException;
 import com.mycompany.emy.BancoPDLP.model.service.ContaBancariaService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -870,25 +871,37 @@ public class TelaInicial extends javax.swing.JFrame {
     }
 
     private void cadastrarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarButtonActionPerformed
+        logger.info("TelaInicial - cadastrarButtonActionPerformed: Cadastrando conta");
+
+        ContaBancariaDTO contaBancariaDTO = null;
         String agencia = cadastroAgenciaInput.getText();
         String conta = cadastroContaInput.getText();
         String nome = CadastroNomeInput.getText();
         Double saldo = Double.valueOf(cadastroSaldoInput.getText());
         String tipoConta = "";
 
+        logger.info("TelaInicial - cadastrarButtonActionPerformed: Procurando conta: Agencia:- {}, Conta:- {}, Nome: - {}, Saldo: - {}", agencia, conta, nome, saldo);
         if (cadastroContaPoupancaButton.isSelected()) {
             tipoConta = cadastroContaPoupancaButton.getText();
+            contaBancariaDTO = new ContaPoupancaDTO();
         } else if (cadastroContaCorrentePfButton.isSelected()) {
             tipoConta = cadastroContaCorrentePfButton.getText();
+            contaBancariaDTO = new ContaCorrentePFDTO();
         } else if (cadastroContaCorrentePJButton.isSelected()) {
             tipoConta = cadastroContaCorrentePJButton.getText();
+            contaBancariaDTO = new ContaCorrentePJDTO();
         }
+        logger.info("TelaInicial - cadastrarButtonActionPerformed: Tipo da Conta - {}", contaBancariaDTO.getTipoConta());
 
         if (!tipoConta.isEmpty()) {
-            ContaBancariaDTO contaBancariaDTO = new ContaBancariaDTO(agencia, conta, tipoConta, nome, saldo);
+            contaBancariaDTO.setAgencia(agencia);
+            contaBancariaDTO.setConta(conta);
+            contaBancariaDTO.setNome(nome);
+            contaBancariaDTO.setTipoConta(tipoConta);
+            contaBancariaDTO.setSaldo(saldo);
             contaBancariaService.cadastrarContaBancaria(contaBancariaDTO);
         } else {
-            // Lógica para lidar com nenhum tipo de conta selecionado
+            throw new ContaBancariaNotFoundException("Erro ao criar conta");
         }
 
     }//GEN-LAST:event_cadastrarButtonActionPerformed
@@ -910,16 +923,15 @@ public class TelaInicial extends javax.swing.JFrame {
         logger.info("TelaInicial - depositoButtonActionPerformed: Realizando transferencia de -{}R$, Agencia origem: - {}, Conta origem: - {} para -> Agencia destino: - {}, Conta destino: - {} ",valorTransferencia, agenciaOrigem, contaOrigem, agenciaDestino, contaDestino);
 
         ContaBancariaDTO contaBancariaOrigem = contaBancariaService.consultarContaDTO(agenciaOrigem,contaOrigem);
-        ContaBancariaDTO contaBancariaDestino = contaBancariaService.consultarContaDTO(agenciaOrigem,contaOrigem);
+        ContaBancariaDTO contaBancariaDestino = contaBancariaService.consultarContaDTO(agenciaDestino,contaDestino);
 
-        BigDecimal saldoAtual = contaBancariaService.consultarSaldo(contaBancariaOrigem); // Substitua isso pela forma como você recupera o saldo real.
-        String saldoAtualFormatado = String.format("R$%.2f", saldoAtual);
-        saldoAtuallnput.setText(saldoAtualFormatado);
-
-        logger.info("TelaInicial - depositoButtonActionPerformed: Realizando transferencia de -{}R$, Conta origem: - {} para -> Conta destino: - {} ",valorTransferencia, contaBancariaOrigem, contaBancariaDestino );
+        logger.info("TelaInicial - depositoButtonActionPerformed: Realizando transferencia de R${}, Conta origem: - {} para -> Conta destino: - {} ",valorTransferencia, contaBancariaOrigem, contaBancariaDestino );
 
         contaBancariaService.transferir(contaBancariaOrigem,contaBancariaDestino, BigDecimal.valueOf(valorTransferencia));
 
+        BigDecimal saldoAtual = contaBancariaService.consultarSaldo(agenciaOrigem,contaOrigem); // Substitua isso pela forma como você recupera o saldo real.
+        String saldoAtualFormatado = String.format("R$%.2f", saldoAtual);
+        saldoAtuallnput.setText(saldoAtualFormatado);
     }//GEN-LAST:event_transferirButtonActionPerformed
 
     private void transferenciaCancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transferenciaCancelarButtonActionPerformed
@@ -931,16 +943,16 @@ public class TelaInicial extends javax.swing.JFrame {
         logger.info("TelaInicial - depositoButtonActionPerformed: Realizando deposito");
         String agencia = depositoAgenciaInput.getText();
         String conta = depositoContaInput.getText();
-        Double valorDeposito = Double.valueOf(transferenciaValorInput.getText());
+        Double valorDeposito = Double.valueOf(depositoValorInput.getText());
 
-        logger.info("TelaInicial - depositoButtonActionPerformed: Realizando deposito de -{}R$, Agencia: - {}, Conta: - {}",valorDeposito, agencia, conta);
+        logger.info("TelaInicial - depositoButtonActionPerformed: Realizando deposito de R${}, Agencia: - {}, Conta: - {}",valorDeposito, agencia, conta);
         ContaBancariaDTO contaBancaria = contaBancariaService.consultarContaDTO(agencia,conta);
 
-        BigDecimal saldoAtual = contaBancariaService.consultarSaldo(contaBancaria); // Substitua isso pela forma como você recupera o saldo real.
+        contaBancariaService.realizarDeposito(contaBancaria, BigDecimal.valueOf(valorDeposito));
+
+        BigDecimal saldoAtual = contaBancariaService.consultarSaldo(agencia,conta); // Substitua isso pela forma como você recupera o saldo real.
         String saldoAtualFormatado = String.format("R$%.2f", saldoAtual);
         saldoAtuallnput.setText(saldoAtualFormatado);
-
-        contaBancariaService.realizarDeposito(contaBancaria, BigDecimal.valueOf(valorDeposito));
 
     }//GEN-LAST:event_depositoButtonActionPerformed
 
@@ -951,14 +963,18 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void saqueButtonActionPerformed(java.awt.event.ActionEvent evt) throws Exception {//GEN-FIRST:event_saqueButtonActionPerformed
         logger.info("TelaInicial - saqueButtonActionPerformed: Realizando saque");
-        String agencia = depositoAgenciaInput.getText();
-        String conta = depositoContaInput.getText();
-        Double valorSaque = Double.valueOf(transferenciaValorInput.getText());
+        String agencia = saqueAgenciaInput.getText();
+        String conta = saqueContaInput.getText();
+        Double valorSaque = Double.valueOf(saqueValorInput.getText());
 
-        logger.info("TelaInicial - saqueButtonActionPerformed: Realizando saque de -{}R$, Agencia: - {}, Conta: - {}",valorSaque, agencia, conta);
+        logger.info("TelaInicial - saqueButtonActionPerformed: Realizando saque de R${}, Agencia: - {}, Conta: - {}",valorSaque, agencia, conta);
         ContaBancariaDTO contaBancaria = contaBancariaService.consultarContaDTO(agencia,conta);
 
         contaBancariaService.realizarSaque(contaBancaria, BigDecimal.valueOf(valorSaque));
+
+        BigDecimal saldoAtual = contaBancariaService.consultarSaldo(agencia,conta); // Substitua isso pela forma como você recupera o saldo real.
+        String saldoAtualFormatado = String.format("R$%.2f", saldoAtual);
+        saldoAtuallnput.setText(saldoAtualFormatado);
     }//GEN-LAST:event_saqueButtonActionPerformed
 
     private void saqueCancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saqueCancelarButtonActionPerformed

@@ -34,10 +34,12 @@ public class ContaBancariaService {
 
     @Transactional
     public ContaBancariaEntity cadastrarContaBancaria(ContaBancariaDTO contaBancariaDTO) {
-        logger.info("ContaBancariaService - cadastrarContaBancaria: Fazendo o cadastro da conta: - {}",contaBancariaDTO);
+        logger.info("ContaBancariaService - cadastrarContaBancaria: Fazendo o cadastro da conta: - {}", contaBancariaDTO);
         ContaBancariaEntity contaEntity = contaBancariaMapper.convertContaBancariaDtoTOEntity(contaBancariaDTO);
-        logger.info("ContaBancariaService - cadastrarContaBancaria: Feito o cadastro com sucesso da conta: - {}",contaEntity);
-        return contaBancariaRepository.save(contaEntity);
+        contaBancariaRepository.save(contaEntity);
+        logger.info("ContaBancariaService - cadastrarContaBancaria: Conta cadastrada com sucesso: - {}", contaEntity);
+
+        return contaEntity;
     }
 
     public List<ContaBancariaEntity> procurarConta(ContaBancariaEntity contaBancaria) {
@@ -50,41 +52,42 @@ public class ContaBancariaService {
     }
 
     public ContaBancariaEntity consultarConta(String agencia, String numeroConta) throws Exception {
-        logger.info("ContaBancariaService - consultarConta: Procurando conta: - {} - {}", agencia, numeroConta);
-        ContaBancariaEntity c = contaBancariaRepository.findByAgenciaAndConta(agencia, numeroConta);
-        logger.info("ContaBancariaService - consultarConta: Conta achada: - {}", c);
-        if (c == null) {
+        logger.info("ContaBancariaService - consultarConta: Procurando conta: Agencia: - {}, Conta: - {}", agencia, numeroConta);
+        ContaBancariaEntity contaEntity = contaBancariaRepository.findByAgenciaAndConta(agencia, numeroConta)
+                .orElseThrow(() -> new ContaBancariaNotFoundException("Conta bancária não encontrada"));
+
+        logger.info("ContaBancariaService - consultarConta: Conta achada: - {}", contaEntity);
+        if (contaEntity == null) {
             throw new Exception("ERRO_CONTA_INVALIDA");
         }
-        return c;
+        return contaEntity;
     }
 
     public ContaBancariaDTO consultarContaDTO(String agencia, String numeroConta) throws Exception {
-        logger.info("ContaBancariaService - consultarContaDTO: Procurando conta: - {} - {}", agencia, numeroConta);
-        ContaBancariaEntity c = contaBancariaRepository.findByAgenciaAndConta(agencia, numeroConta);
-        ContaBancariaDTO contaBancariaDTO = contaBancariaMapper.convertContaBancariaEntityTODto(c);
-        logger.info("ContaBancariaService - consultarContaDTO: Conta achada: - {}", c);
-        if (c == null) {
+        logger.info("ContaBancariaService - consultarContaDTO: Procurando conta: Agencia: - {}, Conta: - {}", agencia, numeroConta);
+        ContaBancariaEntity contaEntity = contaBancariaRepository.findByAgenciaAndConta(agencia, numeroConta)
+                .orElseThrow(() -> new ContaBancariaNotFoundException("Conta bancária não encontrada"));
+
+        ContaBancariaDTO contaBancariaDTO = contaBancariaMapper.convertContaBancariaEntityTODto(contaEntity);
+        logger.info("ContaBancariaService - consultarContaDTO: Conta achada: - {}", contaEntity);
+        if (contaEntity == null) {
             throw new Exception("ERRO_CONTA_INVALIDA");
         }
         return contaBancariaDTO;
     }
-    public BigDecimal consultarSaldo(ContaBancariaDTO contaDto) throws ContaBancariaNotFoundException {
-        logger.info("ContaBancariaService - consultarSaldo: Consultando o saldo da conta: - {}", contaDto);
-        ContaBancariaEntity contaEntity = contaBancariaMapper.convertContaBancariaDtoTOEntity(contaDto);
+    public BigDecimal consultarSaldo(String agencia, String numeroConta) throws ContaBancariaNotFoundException {
+        logger.info("ContaBancariaService - consultarSaldo: Procurando saldo: Agencia: - {}, Conta: - {}", agencia, numeroConta);
+        ContaBancariaEntity contaEntity = contaBancariaRepository.findByAgenciaAndConta(agencia, numeroConta)
+                        .orElseThrow(() -> new ContaBancariaNotFoundException("Conta bancária não encontrada"));
         logger.info("ContaBancariaService - consultarSaldo: Conta achada: - {} Saldo Atual - {}",contaEntity, contaEntity.getSaldo());
-        contaEntity = contaBancariaRepository.findById(contaEntity.getId())
-                .orElseThrow(() -> new ContaBancariaNotFoundException("Conta bancária não encontrada"));
 
         return contaEntity.getSaldo();
     }
+
     @Transactional
     public void realizarDeposito(ContaBancariaDTO contaDto, BigDecimal valor) throws Exception {
-        logger.info("ContaBancariaService - realizarDeposito: Realizando deposito de - {}R$ - ContaID - {}", valor, contaDto);
+        logger.info("ContaBancariaService - realizarDeposito: Realizando deposito de - R${} - ContaID - {}", valor, contaDto);
         ContaBancariaEntity contaBancariaEntity = contaBancariaMapper.convertContaBancariaDtoTOEntity(contaDto);
-
-        contaBancariaEntity = contaBancariaRepository.findById(contaBancariaEntity.getId())
-                .orElseThrow(() -> new ContaBancariaNotFoundException("Conta bancária não encontrada"));
 
         if (valor.compareTo(BigDecimal.ZERO) <= 0) {
             throw new ValorInvalidoException("O valor do depósito deve ser maior que zero");
@@ -92,18 +95,15 @@ public class ContaBancariaService {
 
         BigDecimal novoSaldo = contaBancariaEntity.getSaldo().add(valor);
         contaBancariaEntity.setSaldo(novoSaldo);
-        logger.info("ContaBancariaService - realizarDeposito: Saldo atual - {}R$ da conta - {} ", contaBancariaEntity.getSaldo(), contaBancariaEntity);
+        logger.info("ContaBancariaService - realizarDeposito: Saldo atual - R${} da conta - {} ", contaBancariaEntity.getSaldo(), contaBancariaEntity);
 
         contaBancariaRepository.save(contaBancariaEntity);
     }
 
     @Transactional
     public void realizarSaque(ContaBancariaDTO contaBancariaDTO, BigDecimal valor) {
-        logger.info("ContaBancariaService - realizarSaque: Realizando saque de - {}R$ - ContaID - {}",valor, contaBancariaDTO);
+        logger.info("ContaBancariaService - realizarSaque: Realizando saque de - R${} - ContaID - {}",valor, contaBancariaDTO);
         ContaBancariaEntity contaBancariaEntity = contaBancariaMapper.convertContaBancariaDtoTOEntity(contaBancariaDTO);
-
-        contaBancariaEntity = contaBancariaRepository.findById(contaBancariaEntity.getId())
-                .orElseThrow(() -> new ContaBancariaNotFoundException("Conta bancária não encontrada"));
 
         if (valor.compareTo(BigDecimal.ZERO) <= 0) {
             throw new ValorInvalidoException("O valor do saque deve ser maior que zero");
@@ -114,37 +114,32 @@ public class ContaBancariaService {
 
         BigDecimal novoSaldo = contaBancariaEntity.getSaldo().subtract(valor);
         contaBancariaEntity.setSaldo(novoSaldo);
-        logger.info("ContaBancariaService - realizarSaque: Saldo atual - {}R$ da conta - {} ", contaBancariaEntity.getSaldo(), contaBancariaEntity);
+        logger.info("ContaBancariaService - realizarSaque: Saldo atual - R${} da conta - {} ", contaBancariaEntity.getSaldo(), contaBancariaEntity);
 
         contaBancariaRepository.save(contaBancariaEntity);
     }
 
     @Transactional
     public void transferir(ContaBancariaDTO origem, ContaBancariaDTO destino, BigDecimal valor) throws Exception {
-        logger.info("ContaBancariaService - transferir: Realizando transferencia de - {}R$ da conta: {}  para :  {}",valor, origem, destino);
+        logger.info("ContaBancariaService - transferir: Realizando transferencia de - R${} da conta: {}  para :  {}",valor, origem, destino);
 
         if (valor.compareTo(BigDecimal.ZERO) <= 0) {
             throw new TransferenciaException("O valor da transferência deve ser positivo.");
         }
         ContaBancariaEntity contaOrigem = contaBancariaMapper.convertContaBancariaDtoTOEntity(origem);
         ContaBancariaEntity contaDestino = contaBancariaMapper.convertContaBancariaDtoTOEntity(destino);
-        logger.info("ContaBancariaService - transferir: Realizando transferencia de - {}R$ da conta: {}  para :  {}",valor, contaOrigem, contaDestino);
-
-        contaOrigem = contaBancariaRepository.findById(contaOrigem.getId())
-                .orElseThrow(() -> new ContaBancariaNotFoundException("Conta de origem não encontrada"));
-        contaDestino = contaBancariaRepository.findById(contaDestino.getId())
-                .orElseThrow(() -> new ContaBancariaNotFoundException("Conta de destino não encontrada"));
+        logger.info("ContaBancariaService - transferir: Realizando transferencia de - R${} da conta: {}  para :  {}",valor, contaOrigem, contaDestino);
 
         if (contaOrigem.getSaldo().compareTo(valor) < 0) {
             throw new SaldoInsuficienteException("Saldo insuficiente para a transferência.");
         }
 
         contaOrigem.setSaldo(contaOrigem.getSaldo().subtract(valor));
-        logger.info("ContaBancariaService - transferir: Saldo atual - {}R$ da conta - {} ", contaOrigem.getSaldo(), contaOrigem);
+        logger.info("ContaBancariaService - transferir: Saldo atual - R${} da conta - {} ", contaOrigem.getSaldo(), contaOrigem);
         contaBancariaRepository.save(contaOrigem);
 
         contaDestino.setSaldo(contaDestino.getSaldo().add(valor));
-        logger.info("ContaBancariaService - transferir: Saldo atual - {}R$ da conta - {} ", contaDestino.getSaldo(), contaDestino);
+        logger.info("ContaBancariaService - transferir: Saldo atual - R${} da conta - {} ", contaDestino.getSaldo(), contaDestino);
         contaBancariaRepository.save(contaDestino);
     }
 
