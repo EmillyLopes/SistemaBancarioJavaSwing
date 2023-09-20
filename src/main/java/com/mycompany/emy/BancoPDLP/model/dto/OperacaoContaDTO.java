@@ -11,6 +11,13 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class OperacaoContaDTO {
 
+    public OperacaoContaDTO(LocalDateTime dataHora, String observacao, char tpOperacao, double valor) {
+        this.dataHora = dataHora;
+        this.observacao = observacao;
+        this.tpOperacao = tpOperacao;
+        this.valor = valor;
+    }
+
     private Long id;
     private LocalDateTime dataHora;
     private String observacao;

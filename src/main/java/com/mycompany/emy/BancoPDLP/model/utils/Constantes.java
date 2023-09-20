@@ -12,7 +12,10 @@ public enum Constantes {
     //Tipos de operacao
     DEPOSITO("D"),
     SAQUE("S"),
-    TRANSFERENCIA("T");
+    TRANSFERENCIA("T"),
+    DEPOSITO_OBSERVACAO("Deposito feito"),
+    SAQUE_OBSERVACAO("Saque feito"),
+    TRANSFERENCIA_OBSERVACAO("Transferencia feito");
 
     private final String value;
 

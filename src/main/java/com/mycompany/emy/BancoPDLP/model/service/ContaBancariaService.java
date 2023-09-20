@@ -2,6 +2,7 @@ package com.mycompany.emy.BancoPDLP.model.service;
 
 import com.mycompany.emy.BancoPDLP.controller.mapper.ContaBancariaMapper;
 import com.mycompany.emy.BancoPDLP.model.dto.ContaBancariaDTO;
+import com.mycompany.emy.BancoPDLP.model.dto.OperacaoContaDTO;
 import com.mycompany.emy.BancoPDLP.model.entity.ContaBancariaEntity;
 import com.mycompany.emy.BancoPDLP.model.exception.ContaBancariaNotFoundException;
 import com.mycompany.emy.BancoPDLP.model.exception.SaldoInsuficienteException;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -108,6 +110,7 @@ public class ContaBancariaService {
 
         contaBancariaRepository.save(contaBancariaEntity);
 
+        operacaoContaService.gerarOperacao(contaBancariaEntity, Constantes.TRANSFERENCIA.getValue().charAt(0),Constantes.DEPOSITO_OBSERVACAO.getValue());
     }
 
     @Transactional
@@ -133,7 +136,9 @@ public class ContaBancariaService {
         logger.info("ContaBancariaService - realizarSaque: Saldo atual - R${} da conta - {} ", contaBancariaEntity.getSaldo(), contaBancariaEntity);
 
         contaBancariaRepository.save(contaBancariaEntity);
-        operacaoContaService.salvarOperacao();
+
+        operacaoContaService.gerarOperacao(contaBancariaEntity, Constantes.TRANSFERENCIA.getValue().charAt(0),Constantes.SAQUE_OBSERVACAO.getValue());
+
     }
 
     @Transactional
@@ -154,10 +159,12 @@ public class ContaBancariaService {
         contaOrigem.setSaldo(contaOrigem.getSaldo().subtract(valor));
         logger.info("ContaBancariaService - transferir: Saldo atual - R${} da conta - {} ", contaOrigem.getSaldo(), contaOrigem);
         contaBancariaRepository.save(contaOrigem);
+        operacaoContaService.gerarOperacao(contaOrigem, Constantes.TRANSFERENCIA.getValue().charAt(0),Constantes.TRANSFERENCIA_OBSERVACAO.getValue());
 
         contaDestino.setSaldo(contaDestino.getSaldo().add(valor));
         logger.info("ContaBancariaService - transferir: Saldo atual - R${} da conta - {} ", contaDestino.getSaldo(), contaDestino);
         contaBancariaRepository.save(contaDestino);
+        operacaoContaService.gerarOperacao(contaDestino, Constantes.TRANSFERENCIA.getValue().charAt(0),Constantes.TRANSFERENCIA_OBSERVACAO.getValue());
     }
 
 }
