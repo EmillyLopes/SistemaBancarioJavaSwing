@@ -43,7 +43,8 @@ public class TelaInicial extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        telaInicialContainer = new javax.swing.JPanel();
+        tabTelaInicial = new javax.swing.JTabbedPane();
         cadastroContainer = new javax.swing.JPanel();
         telaCadastroContainer = new javax.swing.JPanel();
         cadastroNomeContainer = new javax.swing.JPanel();
@@ -117,6 +118,8 @@ public class TelaInicial extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        cadastroContainer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         cadastroNomeContainer.setBorder(javax.swing.BorderFactory.createTitledBorder("Nome"));
         cadastroNomeContainer.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -147,7 +150,7 @@ public class TelaInicial extends javax.swing.JFrame {
 
         cadastroSaldoContainer.setBorder(javax.swing.BorderFactory.createTitledBorder("Saldo"));
 
-        cadastroSaldoLabel.setText("Saldo:");
+        cadastroSaldoLabel.setText("Saldo:    R$");
 
         cadastroSaldoInput.setToolTipText("R$0,00");
 
@@ -261,6 +264,8 @@ public class TelaInicial extends javax.swing.JFrame {
         });
 
         cadastroCancelarButton.setText("Cancelar");
+        cadastroCancelarButton.setToolTipText("");
+        cadastroCancelarButton.setName(""); // NOI18N
         cadastroCancelarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cadastroCancelarButtonActionPerformed(evt);
@@ -295,13 +300,13 @@ public class TelaInicial extends javax.swing.JFrame {
             .addGroup(telaCadastroContainerLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(telaCadastroContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cadastroButtonContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(telaCadastroContainerLayout.createSequentialGroup()
                         .addGroup(telaCadastroContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(cadastroSaldoContainer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(cadastroContaContainer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(cadastroNomeContainer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(cadastroButtonContainer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         telaCadastroContainerLayout.setVerticalGroup(
@@ -313,29 +318,16 @@ public class TelaInicial extends javax.swing.JFrame {
                 .addComponent(cadastroContaContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cadastroSaldoContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 101, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
                 .addComponent(cadastroButtonContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout cadastroContainerLayout = new javax.swing.GroupLayout(cadastroContainer);
-        cadastroContainer.setLayout(cadastroContainerLayout);
-        cadastroContainerLayout.setHorizontalGroup(
-            cadastroContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cadastroContainerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(telaCadastroContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        cadastroContainerLayout.setVerticalGroup(
-            cadastroContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cadastroContainerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(telaCadastroContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(17, 17, 17))
-        );
+        cadastroContainer.add(telaCadastroContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 420, -1));
 
-        jTabbedPane1.addTab("Cadastro", cadastroContainer);
+        tabTelaInicial.addTab("Cadastro", cadastroContainer);
+
+        operacoesContainer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         saldoContainer1.setBorder(javax.swing.BorderFactory.createTitledBorder("Saldo"));
 
@@ -351,8 +343,8 @@ public class TelaInicial extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(saldoLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(saldoInput1)
-                .addContainerGap())
+                .addComponent(saldoInput1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         saldoContainer1Layout.setVerticalGroup(
             saldoContainer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -435,7 +427,7 @@ public class TelaInicial extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(saqueAgenciaLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(saqueAgenciaInput)
+                .addComponent(saqueAgenciaInput, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(saqueContaLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -451,7 +443,7 @@ public class TelaInicial extends javax.swing.JFrame {
                     .addComponent(saqueAgenciaLabel)
                     .addComponent(saqueContaLabel)
                     .addComponent(saqueContaInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         saqueValorContainer.setBorder(javax.swing.BorderFactory.createTitledBorder("Valor a ser depositado"));
@@ -479,7 +471,7 @@ public class TelaInicial extends javax.swing.JFrame {
         saqueValorContainerLayout.setVerticalGroup(
             saqueValorContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(saqueValorContainerLayout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(saqueValorContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(saqueValorInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(saqueValorLabel))
@@ -490,19 +482,22 @@ public class TelaInicial extends javax.swing.JFrame {
         saqueContainer.setLayout(saqueContainerLayout);
         saqueContainerLayout.setHorizontalGroup(
             saqueContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(saqueContaContainer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(saqueContainerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(saqueValorContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, saqueContainerLayout.createSequentialGroup()
+                .addGroup(saqueContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(saqueContainerButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(saqueContaContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(saqueValorContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         saqueContainerLayout.setVerticalGroup(
             saqueContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(saqueContainerLayout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addComponent(saqueContaContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addGap(39, 39, 39)
                 .addComponent(saqueValorContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(saqueContainerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(saqueContainerButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -536,7 +531,7 @@ public class TelaInicial extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(depositoAgenciaLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(depositoAgenciaInput, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
+                .addComponent(depositoAgenciaInput, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(depositoContaLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -552,11 +547,16 @@ public class TelaInicial extends javax.swing.JFrame {
                     .addComponent(depositoAgenciaLabel)
                     .addComponent(depositoContaLabel)
                     .addComponent(depositoContaInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         depositoVoltarButton.setText("Voltar");
         depositoVoltarButton.setName(""); // NOI18N
+        depositoVoltarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                depositoVoltarButtonActionPerformed(evt);
+            }
+        });
 
         depositoCancelarButton.setText("Cancelar");
         depositoCancelarButton.addActionListener(new java.awt.event.ActionListener() {
@@ -581,8 +581,8 @@ public class TelaInicial extends javax.swing.JFrame {
                 .addComponent(depositoButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(depositoVoltarButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(depositoCancelarButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(depositoCancelarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         depositoContainerButtonLayout.setVerticalGroup(
@@ -621,7 +621,7 @@ public class TelaInicial extends javax.swing.JFrame {
         depositoValorContainerLayout.setVerticalGroup(
             depositoValorContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(depositoValorContainerLayout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(depositoValorContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(depositoValorInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(depositoValorLabel))
@@ -632,14 +632,12 @@ public class TelaInicial extends javax.swing.JFrame {
         depositoContainer.setLayout(depositoContainerLayout);
         depositoContainerLayout.setHorizontalGroup(
             depositoContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(depositoContainerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(depositoContainerLayout.createSequentialGroup()
                 .addGroup(depositoContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(depositoValorContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(depositoContainerLayout.createSequentialGroup()
-                        .addComponent(depositoContaContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                    .addComponent(depositoContaContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(depositoContainerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(depositoValorContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(16, 16, 16))
         );
         depositoContainerLayout.setVerticalGroup(
             depositoContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -648,9 +646,9 @@ public class TelaInicial extends javax.swing.JFrame {
                 .addComponent(depositoContaContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
                 .addComponent(depositoValorContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                .addComponent(depositoContainerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addComponent(depositoContainerButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31))
         );
 
         tabOperacoes.addTab("Deposito", depositoContainer);
@@ -687,8 +685,8 @@ public class TelaInicial extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(transferenciaContaOrigemLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(transferenciaContaOrigemInput, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(transferenciaContaOrigemInput)
+                .addContainerGap())
         );
         contaOrigemContainerLayout.setVerticalGroup(
             contaOrigemContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -699,7 +697,7 @@ public class TelaInicial extends javax.swing.JFrame {
                     .addComponent(transferenciaAgenciaOrigemLabel)
                     .addComponent(transferenciaContaOrigemLabel)
                     .addComponent(transferenciaContaOrigemInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         contaDestinoContainer.setBorder(javax.swing.BorderFactory.createTitledBorder("Conta Destino"));
@@ -727,7 +725,7 @@ public class TelaInicial extends javax.swing.JFrame {
         contaDestinoContainerLayout.setHorizontalGroup(
             contaDestinoContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contaDestinoContainerLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(28, Short.MAX_VALUE)
                 .addComponent(transferenciaAgenciaDestinoLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(transferenciaAgenciaDestinoInput, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -746,7 +744,7 @@ public class TelaInicial extends javax.swing.JFrame {
                     .addComponent(transferenciaAgenciaDestinoLabel)
                     .addComponent(transferenciaContaDestinoLabel)
                     .addComponent(transferenciaContaDestinoInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         transferenciaVoltarButton.setText("Voltar");
@@ -775,19 +773,19 @@ public class TelaInicial extends javax.swing.JFrame {
                 .addComponent(transferirButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(transferenciaVoltarButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(transferenciaCancelarButton)
                 .addContainerGap())
         );
         tansferenciaContainerButtonLayout.setVerticalGroup(
             tansferenciaContainerButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tansferenciaContainerButtonLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(tansferenciaContainerButtonLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(tansferenciaContainerButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(transferirButton)
                     .addComponent(transferenciaVoltarButton)
                     .addComponent(transferenciaCancelarButton))
-                .addGap(20, 20, 20))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         transferenciaValorContainer.setBorder(javax.swing.BorderFactory.createTitledBorder("Valor a ser depositado"));
@@ -814,25 +812,22 @@ public class TelaInicial extends javax.swing.JFrame {
         );
         transferenciaValorContainerLayout.setVerticalGroup(
             transferenciaValorContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(transferenciaValorContainerLayout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, transferenciaValorContainerLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(transferenciaValorContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(transferenciaValorInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(transferenciaValorLabel))
-                .addGap(16, 16, 16))
+                .addGap(13, 13, 13))
         );
 
         javax.swing.GroupLayout transferenciaContainerLayout = new javax.swing.GroupLayout(transferenciaContainer);
         transferenciaContainer.setLayout(transferenciaContainerLayout);
         transferenciaContainerLayout.setHorizontalGroup(
             transferenciaContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(transferenciaContainerLayout.createSequentialGroup()
-                .addGroup(transferenciaContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(contaOrigemContainer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(contaDestinoContainer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(transferenciaValorContainer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(tansferenciaContainerButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(contaOrigemContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(transferenciaValorContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(contaDestinoContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(tansferenciaContainerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         transferenciaContainerLayout.setVerticalGroup(
             transferenciaContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -841,11 +836,11 @@ public class TelaInicial extends javax.swing.JFrame {
                 .addComponent(contaOrigemContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(contaDestinoContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(transferenciaValorContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(tansferenciaContainerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(transferenciaValorContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tansferenciaContainerButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         tabOperacoes.addTab("Transferência", transferenciaContainer);
@@ -854,58 +849,55 @@ public class TelaInicial extends javax.swing.JFrame {
         telaOperacoesContainer.setLayout(telaOperacoesContainerLayout);
         telaOperacoesContainerLayout.setHorizontalGroup(
             telaOperacoesContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(telaOperacoesContainerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(telaOperacoesContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(saldoContainer1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(telaOperacoesContainerLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(tabOperacoes, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)))
-                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, telaOperacoesContainerLayout.createSequentialGroup()
+                .addContainerGap(38, Short.MAX_VALUE)
+                .addGroup(telaOperacoesContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(tabOperacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(saldoContainer1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(29, 29, 29))
         );
         telaOperacoesContainerLayout.setVerticalGroup(
             telaOperacoesContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, telaOperacoesContainerLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(12, 12, 12)
                 .addComponent(saldoContainer1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(tabOperacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tabOperacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout operacoesContainerLayout = new javax.swing.GroupLayout(operacoesContainer);
-        operacoesContainer.setLayout(operacoesContainerLayout);
-        operacoesContainerLayout.setHorizontalGroup(
-            operacoesContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(operacoesContainerLayout.createSequentialGroup()
+        operacoesContainer.add(telaOperacoesContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, -1));
+
+        tabTelaInicial.addTab("Operações", operacoesContainer);
+
+        javax.swing.GroupLayout telaInicialContainerLayout = new javax.swing.GroupLayout(telaInicialContainer);
+        telaInicialContainer.setLayout(telaInicialContainerLayout);
+        telaInicialContainerLayout.setHorizontalGroup(
+            telaInicialContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(telaInicialContainerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(telaOperacoesContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(tabTelaInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2))
+        );
+        telaInicialContainerLayout.setVerticalGroup(
+            telaInicialContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(telaInicialContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(tabTelaInicial, javax.swing.GroupLayout.DEFAULT_SIZE, 499, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        operacoesContainerLayout.setVerticalGroup(
-            operacoesContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(operacoesContainerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(telaOperacoesContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Operações", operacoesContainer);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1)
-                .addContainerGap())
+                .addComponent(telaInicialContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane1)
-                .addContainerGap())
+            .addComponent(telaInicialContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -927,7 +919,7 @@ public class TelaInicial extends javax.swing.JFrame {
         Component source = (Component) e.getSource();
         if (source instanceof JButton && "Cancelar".equals(((JButton) source).getText())) {
             // Chame a função recursiva para limpar todos os campos de texto
-            limparCamposRecursivamente(telaOperacoesContainer);
+            limparCamposRecursivamente(telaInicialContainer);
         }
     }
     private void cadastroAgenciaInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroAgenciaInputActionPerformed
@@ -950,77 +942,81 @@ public class TelaInicial extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cadastrarButtonActionPerformed
 
-    private void saqueCancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saqueCancelarButtonActionPerformed
-        limparCampos(evt);
-    }//GEN-LAST:event_saqueCancelarButtonActionPerformed
-
-    private void saqueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saqueButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_saqueButtonActionPerformed
-
-    private void saqueAgenciaInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saqueAgenciaInputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_saqueAgenciaInputActionPerformed
-
-    private void saqueContaInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saqueContaInputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_saqueContaInputActionPerformed
-
-    private void depositoAgenciaInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositoAgenciaInputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_depositoAgenciaInputActionPerformed
-
-    private void depositoContaInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositoContaInputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_depositoContaInputActionPerformed
-
-    private void depositoCancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositoCancelarButtonActionPerformed
-        limparCampos(evt);
-    }//GEN-LAST:event_depositoCancelarButtonActionPerformed
-
-    private void depositoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositoButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_depositoButtonActionPerformed
-
-    private void transferenciaAgenciaOrigemInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transferenciaAgenciaOrigemInputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_transferenciaAgenciaOrigemInputActionPerformed
-
-    private void transferenciaContaOrigemInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transferenciaContaOrigemInputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_transferenciaContaOrigemInputActionPerformed
-
-    private void transferenciaAgenciaDestinoInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transferenciaAgenciaDestinoInputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_transferenciaAgenciaDestinoInputActionPerformed
-
-    private void transferenciaContaDestinoInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transferenciaContaDestinoInputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_transferenciaContaDestinoInputActionPerformed
-
-    private void transferenciaCancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transferenciaCancelarButtonActionPerformed
-        limparCampos(evt);
-    }//GEN-LAST:event_transferenciaCancelarButtonActionPerformed
-
-    private void transferirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transferirButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_transferirButtonActionPerformed
-
-    private void depositoValorInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositoValorInputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_depositoValorInputActionPerformed
-
-    private void saqueValorInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saqueValorInputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_saqueValorInputActionPerformed
+    private void cadastroCancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroCancelarButtonActionPerformed
+       limparCampos(evt);
+    }//GEN-LAST:event_cadastroCancelarButtonActionPerformed
 
     private void transferenciaValorInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transferenciaValorInputActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_transferenciaValorInputActionPerformed
 
-    private void cadastroCancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroCancelarButtonActionPerformed
-       limparCampos(evt);
-    }//GEN-LAST:event_cadastroCancelarButtonActionPerformed
+    private void transferirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transferirButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_transferirButtonActionPerformed
+
+    private void transferenciaCancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transferenciaCancelarButtonActionPerformed
+        limparCampos(evt);
+    }//GEN-LAST:event_transferenciaCancelarButtonActionPerformed
+
+    private void transferenciaContaDestinoInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transferenciaContaDestinoInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_transferenciaContaDestinoInputActionPerformed
+
+    private void transferenciaAgenciaDestinoInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transferenciaAgenciaDestinoInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_transferenciaAgenciaDestinoInputActionPerformed
+
+    private void transferenciaContaOrigemInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transferenciaContaOrigemInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_transferenciaContaOrigemInputActionPerformed
+
+    private void transferenciaAgenciaOrigemInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transferenciaAgenciaOrigemInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_transferenciaAgenciaOrigemInputActionPerformed
+
+    private void depositoValorInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositoValorInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_depositoValorInputActionPerformed
+
+    private void depositoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositoButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_depositoButtonActionPerformed
+
+    private void depositoCancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositoCancelarButtonActionPerformed
+        limparCampos(evt);
+    }//GEN-LAST:event_depositoCancelarButtonActionPerformed
+
+    private void depositoContaInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositoContaInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_depositoContaInputActionPerformed
+
+    private void depositoAgenciaInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositoAgenciaInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_depositoAgenciaInputActionPerformed
+
+    private void saqueValorInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saqueValorInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_saqueValorInputActionPerformed
+
+    private void saqueContaInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saqueContaInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_saqueContaInputActionPerformed
+
+    private void saqueAgenciaInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saqueAgenciaInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_saqueAgenciaInputActionPerformed
+
+    private void saqueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saqueButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_saqueButtonActionPerformed
+
+    private void saqueCancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saqueCancelarButtonActionPerformed
+        limparCampos(evt);
+    }//GEN-LAST:event_saqueCancelarButtonActionPerformed
+
+    private void depositoVoltarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositoVoltarButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_depositoVoltarButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1058,7 +1054,6 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JTextField depositoValorInput;
     private javax.swing.JLabel depositoValorLabel;
     private javax.swing.JButton depositoVoltarButton;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JPanel operacoesContainer;
     private javax.swing.JPanel saldoContainer1;
     private javax.swing.JTextField saldoInput1;
@@ -1077,8 +1072,10 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JLabel saqueValorLabel;
     private javax.swing.JButton saqueVoltarButton;
     private javax.swing.JTabbedPane tabOperacoes;
+    private javax.swing.JTabbedPane tabTelaInicial;
     private javax.swing.JPanel tansferenciaContainerButton;
     private javax.swing.JPanel telaCadastroContainer;
+    private javax.swing.JPanel telaInicialContainer;
     private javax.swing.JPanel telaOperacoesContainer;
     private javax.swing.JTextField transferenciaAgenciaDestinoInput;
     private javax.swing.JLabel transferenciaAgenciaDestinoLabel;
