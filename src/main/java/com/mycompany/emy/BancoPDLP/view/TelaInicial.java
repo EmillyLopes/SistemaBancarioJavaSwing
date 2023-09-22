@@ -4,8 +4,10 @@ import com.mycompany.emy.BancoPDLP.model.dto.ContaBancariaDTO;
 import com.mycompany.emy.BancoPDLP.model.dto.ContaCorrentePFDTO;
 import com.mycompany.emy.BancoPDLP.model.dto.ContaCorrentePJDTO;
 import com.mycompany.emy.BancoPDLP.model.dto.ContaPoupancaDTO;
+import com.mycompany.emy.BancoPDLP.model.dto.OperacaoContaDTO;
 import com.mycompany.emy.BancoPDLP.model.exception.ContaBancariaNotFoundException;
 import com.mycompany.emy.BancoPDLP.model.service.ContaBancariaService;
+import com.mycompany.emy.BancoPDLP.model.service.OperacaoContaService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.math.BigDecimal;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -25,6 +29,9 @@ public class TelaInicial extends javax.swing.JFrame {
 
     @Autowired
     private ContaBancariaService contaBancariaService;
+
+    @Autowired
+    private OperacaoContaService operacaoContaService;
 
     public TelaInicial(ContaBancariaService contaBancariaService) {
         this.contaBancariaService = contaBancariaService;
@@ -46,6 +53,7 @@ public class TelaInicial extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        tipoContabuttonGroup = new javax.swing.ButtonGroup();
         telaInicialContainer = new javax.swing.JPanel();
         tabTelaInicial = new javax.swing.JTabbedPane();
         cadastroContainer = new javax.swing.JPanel();
@@ -118,6 +126,18 @@ public class TelaInicial extends javax.swing.JFrame {
         transferenciaValorContainer = new javax.swing.JPanel();
         transferenciaValorLabel = new javax.swing.JLabel();
         transferenciaValorInput = new javax.swing.JTextField();
+        extratoContainer = new javax.swing.JPanel();
+        telaExtratoContainer = new javax.swing.JPanel();
+        pesquisaContainer = new javax.swing.JPanel();
+        extratoPesquisaContainer = new javax.swing.JPanel();
+        extratoAgenciaInput = new javax.swing.JTextField();
+        extratoAgenciaLabel = new javax.swing.JLabel();
+        extratoContaLabel = new javax.swing.JLabel();
+        extratoContaInput = new javax.swing.JTextField();
+        extratoPesquisaButton = new javax.swing.JButton();
+        extratoTabelaContainer = new javax.swing.JPanel();
+        extratoScrollPane = new javax.swing.JScrollPane();
+        extratoTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -133,22 +153,22 @@ public class TelaInicial extends javax.swing.JFrame {
         javax.swing.GroupLayout cadastroNomeContainerLayout = new javax.swing.GroupLayout(cadastroNomeContainer);
         cadastroNomeContainer.setLayout(cadastroNomeContainerLayout);
         cadastroNomeContainerLayout.setHorizontalGroup(
-                cadastroNomeContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(cadastroNomeContainerLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(cadastroNomeLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(CadastroNomeInput)
-                                .addContainerGap())
+            cadastroNomeContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cadastroNomeContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(cadastroNomeLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(CadastroNomeInput)
+                .addContainerGap())
         );
         cadastroNomeContainerLayout.setVerticalGroup(
-                cadastroNomeContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(cadastroNomeContainerLayout.createSequentialGroup()
-                                .addGap(11, 11, 11)
-                                .addGroup(cadastroNomeContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(cadastroNomeLabel)
-                                        .addComponent(CadastroNomeInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            cadastroNomeContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cadastroNomeContainerLayout.createSequentialGroup()
+                .addGap(11, 11, 11)
+                .addGroup(cadastroNomeContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cadastroNomeLabel)
+                    .addComponent(CadastroNomeInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         cadastroSaldoContainer.setBorder(javax.swing.BorderFactory.createTitledBorder("Saldo"));
@@ -160,22 +180,22 @@ public class TelaInicial extends javax.swing.JFrame {
         javax.swing.GroupLayout cadastroSaldoContainerLayout = new javax.swing.GroupLayout(cadastroSaldoContainer);
         cadastroSaldoContainer.setLayout(cadastroSaldoContainerLayout);
         cadastroSaldoContainerLayout.setHorizontalGroup(
-                cadastroSaldoContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(cadastroSaldoContainerLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(cadastroSaldoLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cadastroSaldoInput)
-                                .addContainerGap())
+            cadastroSaldoContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cadastroSaldoContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(cadastroSaldoLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cadastroSaldoInput)
+                .addContainerGap())
         );
         cadastroSaldoContainerLayout.setVerticalGroup(
-                cadastroSaldoContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(cadastroSaldoContainerLayout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addGroup(cadastroSaldoContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(cadastroSaldoLabel)
-                                        .addComponent(cadastroSaldoInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(17, Short.MAX_VALUE))
+            cadastroSaldoContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cadastroSaldoContainerLayout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addGroup(cadastroSaldoContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cadastroSaldoLabel)
+                    .addComponent(cadastroSaldoInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         cadastroContaContainer.setBorder(javax.swing.BorderFactory.createTitledBorder("Conta"));
@@ -190,15 +210,18 @@ public class TelaInicial extends javax.swing.JFrame {
 
         cadastroTipoContaLabel.setText("Tipo de conta:");
 
-        cadastroContaPoupancaButton.setSelected(true);
+        tipoContabuttonGroup.add(cadastroContaPoupancaButton);
         cadastroContaPoupancaButton.setText("Conta Poupança");
         cadastroContaPoupancaButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        cadastroContaPoupancaButton.setContentAreaFilled(false);
         cadastroContaPoupancaButton.setMargin(new java.awt.Insets(0, 0, 0, 0));
 
+        tipoContabuttonGroup.add(cadastroContaCorrentePJButton);
         cadastroContaCorrentePJButton.setText("Conta Corrente PJ");
         cadastroContaCorrentePJButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         cadastroContaCorrentePJButton.setMargin(new java.awt.Insets(0, 0, 0, 0));
 
+        tipoContabuttonGroup.add(cadastroContaCorrentePfButton);
         cadastroContaCorrentePfButton.setText("Conta Corrente PF");
         cadastroContaCorrentePfButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         cadastroContaCorrentePfButton.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -206,47 +229,47 @@ public class TelaInicial extends javax.swing.JFrame {
         javax.swing.GroupLayout cadastroContaContainerLayout = new javax.swing.GroupLayout(cadastroContaContainer);
         cadastroContaContainer.setLayout(cadastroContaContainerLayout);
         cadastroContaContainerLayout.setHorizontalGroup(
-                cadastroContaContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(cadastroContaContainerLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(cadastroContaContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(cadastroContaContainerLayout.createSequentialGroup()
-                                                .addComponent(cadastroAgenciaLabel)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(cadastroAgenciaInput)
-                                                .addGap(24, 24, 24)
-                                                .addComponent(cadastroContaLabel)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(cadastroContaInput, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addContainerGap())
-                                        .addGroup(cadastroContaContainerLayout.createSequentialGroup()
-                                                .addGroup(cadastroContaContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(cadastroContaContainerLayout.createSequentialGroup()
-                                                                .addComponent(cadastroContaPoupancaButton)
-                                                                .addGap(12, 12, 12)
-                                                                .addComponent(cadastroContaCorrentePJButton)
-                                                                .addGap(18, 18, 18)
-                                                                .addComponent(cadastroContaCorrentePfButton))
-                                                        .addComponent(cadastroTipoContaLabel))
-                                                .addGap(0, 0, Short.MAX_VALUE))))
+            cadastroContaContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cadastroContaContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(cadastroContaContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(cadastroContaContainerLayout.createSequentialGroup()
+                        .addComponent(cadastroAgenciaLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cadastroAgenciaInput)
+                        .addGap(24, 24, 24)
+                        .addComponent(cadastroContaLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cadastroContaInput, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(cadastroContaContainerLayout.createSequentialGroup()
+                        .addGroup(cadastroContaContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(cadastroContaContainerLayout.createSequentialGroup()
+                                .addComponent(cadastroContaPoupancaButton)
+                                .addGap(12, 12, 12)
+                                .addComponent(cadastroContaCorrentePJButton)
+                                .addGap(18, 18, 18)
+                                .addComponent(cadastroContaCorrentePfButton))
+                            .addComponent(cadastroTipoContaLabel))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         cadastroContaContainerLayout.setVerticalGroup(
-                cadastroContaContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(cadastroContaContainerLayout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addGroup(cadastroContaContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(cadastroAgenciaInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(cadastroAgenciaLabel)
-                                        .addComponent(cadastroContaLabel)
-                                        .addComponent(cadastroContaInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                                .addComponent(cadastroTipoContaLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(cadastroContaContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(cadastroContaPoupancaButton)
-                                        .addComponent(cadastroContaCorrentePJButton)
-                                        .addComponent(cadastroContaCorrentePfButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(8, 8, 8))
+            cadastroContaContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cadastroContaContainerLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(cadastroContaContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cadastroAgenciaInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cadastroAgenciaLabel)
+                    .addComponent(cadastroContaLabel)
+                    .addComponent(cadastroContaInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(cadastroTipoContaLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(cadastroContaContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cadastroContaPoupancaButton)
+                    .addComponent(cadastroContaCorrentePJButton)
+                    .addComponent(cadastroContaCorrentePfButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(8, 8, 8))
         );
 
         cadastrarButton.setText("Cadastrar");
@@ -268,49 +291,49 @@ public class TelaInicial extends javax.swing.JFrame {
         javax.swing.GroupLayout cadastroButtonContainerLayout = new javax.swing.GroupLayout(cadastroButtonContainer);
         cadastroButtonContainer.setLayout(cadastroButtonContainerLayout);
         cadastroButtonContainerLayout.setHorizontalGroup(
-                cadastroButtonContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(cadastroButtonContainerLayout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(cadastrarButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cadastroCancelarButton)
-                                .addContainerGap())
+            cadastroButtonContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cadastroButtonContainerLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cadastrarButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cadastroCancelarButton)
+                .addContainerGap())
         );
         cadastroButtonContainerLayout.setVerticalGroup(
-                cadastroButtonContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(cadastroButtonContainerLayout.createSequentialGroup()
-                                .addContainerGap(10, Short.MAX_VALUE)
-                                .addGroup(cadastroButtonContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(cadastrarButton)
-                                        .addComponent(cadastroCancelarButton))
-                                .addContainerGap())
+            cadastroButtonContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cadastroButtonContainerLayout.createSequentialGroup()
+                .addContainerGap(10, Short.MAX_VALUE)
+                .addGroup(cadastroButtonContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cadastrarButton)
+                    .addComponent(cadastroCancelarButton))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout telaCadastroContainerLayout = new javax.swing.GroupLayout(telaCadastroContainer);
         telaCadastroContainer.setLayout(telaCadastroContainerLayout);
         telaCadastroContainerLayout.setHorizontalGroup(
-                telaCadastroContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(telaCadastroContainerLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(telaCadastroContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(cadastroButtonContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(cadastroSaldoContainer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(cadastroContaContainer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(cadastroNomeContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addContainerGap(25, Short.MAX_VALUE))
+            telaCadastroContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(telaCadastroContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(telaCadastroContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(cadastroButtonContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cadastroSaldoContainer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cadastroContaContainer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cadastroNomeContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         telaCadastroContainerLayout.setVerticalGroup(
-                telaCadastroContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(telaCadastroContainerLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(cadastroNomeContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cadastroContaContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cadastroSaldoContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
-                                .addComponent(cadastroButtonContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            telaCadastroContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(telaCadastroContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(cadastroNomeContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cadastroContaContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cadastroSaldoContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                .addComponent(cadastroButtonContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         cadastroContainer.add(telaCadastroContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 420, -1));
@@ -328,22 +351,22 @@ public class TelaInicial extends javax.swing.JFrame {
         javax.swing.GroupLayout saldoContainer1Layout = new javax.swing.GroupLayout(saldoContainer1);
         saldoContainer1.setLayout(saldoContainer1Layout);
         saldoContainer1Layout.setHorizontalGroup(
-                saldoContainer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(saldoContainer1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(saldoAtualLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(saldoAtuallnput, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            saldoContainer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(saldoContainer1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(saldoAtualLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(saldoAtuallnput, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         saldoContainer1Layout.setVerticalGroup(
-                saldoContainer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(saldoContainer1Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addGroup(saldoContainer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(saldoAtualLabel)
-                                        .addComponent(saldoAtuallnput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            saldoContainer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(saldoContainer1Layout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addGroup(saldoContainer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(saldoAtualLabel)
+                    .addComponent(saldoAtuallnput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         tabOperacoes.setName("Saque"); // NOI18N
@@ -372,25 +395,25 @@ public class TelaInicial extends javax.swing.JFrame {
         javax.swing.GroupLayout saqueContainerButtonLayout = new javax.swing.GroupLayout(saqueContainerButton);
         saqueContainerButton.setLayout(saqueContainerButtonLayout);
         saqueContainerButtonLayout.setHorizontalGroup(
-                saqueContainerButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(saqueContainerButtonLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(saqueButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(saqueVoltarButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(saqueCancelarButton)
-                                .addContainerGap())
+            saqueContainerButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(saqueContainerButtonLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(saqueButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(saqueVoltarButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(saqueCancelarButton)
+                .addContainerGap())
         );
         saqueContainerButtonLayout.setVerticalGroup(
-                saqueContainerButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, saqueContainerButtonLayout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(saqueContainerButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(saqueButton)
-                                        .addComponent(saqueVoltarButton)
-                                        .addComponent(saqueCancelarButton))
-                                .addGap(20, 20, 20))
+            saqueContainerButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, saqueContainerButtonLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(saqueContainerButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(saqueButton)
+                    .addComponent(saqueVoltarButton)
+                    .addComponent(saqueCancelarButton))
+                .addGap(20, 20, 20))
         );
 
         saqueContaContainer.setBorder(javax.swing.BorderFactory.createTitledBorder("Conta"));
@@ -406,31 +429,31 @@ public class TelaInicial extends javax.swing.JFrame {
         javax.swing.GroupLayout saqueContaContainerLayout = new javax.swing.GroupLayout(saqueContaContainer);
         saqueContaContainer.setLayout(saqueContaContainerLayout);
         saqueContaContainerLayout.setHorizontalGroup(
-                saqueContaContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(saqueContaContainerLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(saqueAgenciaLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(saqueAgenciaInput, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(saqueContaLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(saqueContaInput, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())
+            saqueContaContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(saqueContaContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(saqueAgenciaLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(saqueAgenciaInput, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(saqueContaLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(saqueContaInput, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         saqueContaContainerLayout.setVerticalGroup(
-                saqueContaContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(saqueContaContainerLayout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addGroup(saqueContaContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(saqueAgenciaInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(saqueAgenciaLabel)
-                                        .addComponent(saqueContaLabel)
-                                        .addComponent(saqueContaInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            saqueContaContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(saqueContaContainerLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(saqueContaContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(saqueAgenciaInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(saqueAgenciaLabel)
+                    .addComponent(saqueContaLabel)
+                    .addComponent(saqueContaInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        saqueValorContainer.setBorder(javax.swing.BorderFactory.createTitledBorder("Valor a ser depositado"));
+        saqueValorContainer.setBorder(javax.swing.BorderFactory.createTitledBorder("Valor a ser sacado"));
 
         saqueValorLabel.setText("Valor: R$");
 
@@ -439,45 +462,45 @@ public class TelaInicial extends javax.swing.JFrame {
         javax.swing.GroupLayout saqueValorContainerLayout = new javax.swing.GroupLayout(saqueValorContainer);
         saqueValorContainer.setLayout(saqueValorContainerLayout);
         saqueValorContainerLayout.setHorizontalGroup(
-                saqueValorContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(saqueValorContainerLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(saqueValorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(saqueValorInput, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            saqueValorContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(saqueValorContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(saqueValorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(saqueValorInput, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         saqueValorContainerLayout.setVerticalGroup(
-                saqueValorContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(saqueValorContainerLayout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(saqueValorContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(saqueValorInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(saqueValorLabel))
-                                .addGap(16, 16, 16))
+            saqueValorContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(saqueValorContainerLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(saqueValorContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(saqueValorInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(saqueValorLabel))
+                .addGap(16, 16, 16))
         );
 
         javax.swing.GroupLayout saqueContainerLayout = new javax.swing.GroupLayout(saqueContainer);
         saqueContainer.setLayout(saqueContainerLayout);
         saqueContainerLayout.setHorizontalGroup(
-                saqueContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, saqueContainerLayout.createSequentialGroup()
-                                .addGroup(saqueContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(saqueContainerButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(saqueContaContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(saqueValorContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addContainerGap())
+            saqueContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, saqueContainerLayout.createSequentialGroup()
+                .addGroup(saqueContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(saqueContainerButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(saqueContaContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(saqueValorContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         saqueContainerLayout.setVerticalGroup(
-                saqueContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(saqueContainerLayout.createSequentialGroup()
-                                .addGap(39, 39, 39)
-                                .addComponent(saqueContaContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(39, 39, 39)
-                                .addComponent(saqueValorContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(saqueContainerButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())
+            saqueContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(saqueContainerLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(saqueContaContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addComponent(saqueValorContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                .addComponent(saqueContainerButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         tabOperacoes.addTab("Saque", saqueContainer);
@@ -495,28 +518,28 @@ public class TelaInicial extends javax.swing.JFrame {
         javax.swing.GroupLayout depositoContaContainerLayout = new javax.swing.GroupLayout(depositoContaContainer);
         depositoContaContainer.setLayout(depositoContaContainerLayout);
         depositoContaContainerLayout.setHorizontalGroup(
-                depositoContaContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(depositoContaContainerLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(depositoAgenciaLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(depositoAgenciaInput, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(depositoContaLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(depositoContaInput, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())
+            depositoContaContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(depositoContaContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(depositoAgenciaLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(depositoAgenciaInput, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(depositoContaLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(depositoContaInput, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         depositoContaContainerLayout.setVerticalGroup(
-                depositoContaContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(depositoContaContainerLayout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addGroup(depositoContaContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(depositoAgenciaInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(depositoAgenciaLabel)
-                                        .addComponent(depositoContaLabel)
-                                        .addComponent(depositoContaInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            depositoContaContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(depositoContaContainerLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(depositoContaContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(depositoAgenciaInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(depositoAgenciaLabel)
+                    .addComponent(depositoContaLabel)
+                    .addComponent(depositoContaInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         depositoVoltarButton.setText("Voltar");
@@ -548,25 +571,25 @@ public class TelaInicial extends javax.swing.JFrame {
         javax.swing.GroupLayout depositoContainerButtonLayout = new javax.swing.GroupLayout(depositoContainerButton);
         depositoContainerButton.setLayout(depositoContainerButtonLayout);
         depositoContainerButtonLayout.setHorizontalGroup(
-                depositoContainerButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(depositoContainerButtonLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(depositoButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(depositoVoltarButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(depositoCancelarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, 0))
+            depositoContainerButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(depositoContainerButtonLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(depositoButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(depositoVoltarButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(depositoCancelarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
         depositoContainerButtonLayout.setVerticalGroup(
-                depositoContainerButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, depositoContainerButtonLayout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(depositoContainerButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(depositoButton)
-                                        .addComponent(depositoVoltarButton)
-                                        .addComponent(depositoCancelarButton))
-                                .addGap(20, 20, 20))
+            depositoContainerButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, depositoContainerButtonLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(depositoContainerButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(depositoButton)
+                    .addComponent(depositoVoltarButton)
+                    .addComponent(depositoCancelarButton))
+                .addGap(20, 20, 20))
         );
 
         depositoValorContainer.setBorder(javax.swing.BorderFactory.createTitledBorder("Valor a ser depositado"));
@@ -578,45 +601,45 @@ public class TelaInicial extends javax.swing.JFrame {
         javax.swing.GroupLayout depositoValorContainerLayout = new javax.swing.GroupLayout(depositoValorContainer);
         depositoValorContainer.setLayout(depositoValorContainerLayout);
         depositoValorContainerLayout.setHorizontalGroup(
-                depositoValorContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(depositoValorContainerLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(depositoValorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(depositoValorInput, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            depositoValorContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(depositoValorContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(depositoValorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(depositoValorInput, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         depositoValorContainerLayout.setVerticalGroup(
-                depositoValorContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(depositoValorContainerLayout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(depositoValorContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(depositoValorInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(depositoValorLabel))
-                                .addGap(16, 16, 16))
+            depositoValorContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(depositoValorContainerLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(depositoValorContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(depositoValorInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(depositoValorLabel))
+                .addGap(16, 16, 16))
         );
 
         javax.swing.GroupLayout depositoContainerLayout = new javax.swing.GroupLayout(depositoContainer);
         depositoContainer.setLayout(depositoContainerLayout);
         depositoContainerLayout.setHorizontalGroup(
-                depositoContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(depositoContainerLayout.createSequentialGroup()
-                                .addGroup(depositoContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(depositoContaContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(depositoContainerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(depositoValorContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(16, 16, 16))
+            depositoContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(depositoContainerLayout.createSequentialGroup()
+                .addGroup(depositoContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(depositoContaContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(depositoValorContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(depositoContainerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, 0))
         );
         depositoContainerLayout.setVerticalGroup(
-                depositoContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(depositoContainerLayout.createSequentialGroup()
-                                .addGap(29, 29, 29)
-                                .addComponent(depositoContaContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(39, 39, 39)
-                                .addComponent(depositoValorContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                                .addComponent(depositoContainerButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(35, 35, 35))
+            depositoContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(depositoContainerLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(depositoContaContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(depositoValorContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
+                .addComponent(depositoContainerButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         tabOperacoes.addTab("Deposito", depositoContainer);
@@ -634,28 +657,28 @@ public class TelaInicial extends javax.swing.JFrame {
         javax.swing.GroupLayout contaOrigemContainerLayout = new javax.swing.GroupLayout(contaOrigemContainer);
         contaOrigemContainer.setLayout(contaOrigemContainerLayout);
         contaOrigemContainerLayout.setHorizontalGroup(
-                contaOrigemContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(contaOrigemContainerLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(transferenciaAgenciaOrigemLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(transferenciaAgenciaOrigemInput, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(transferenciaContaOrigemLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(transferenciaContaOrigemInput)
-                                .addContainerGap())
+            contaOrigemContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(contaOrigemContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(transferenciaAgenciaOrigemLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(transferenciaAgenciaOrigemInput, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(transferenciaContaOrigemLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(transferenciaContaOrigemInput)
+                .addContainerGap())
         );
         contaOrigemContainerLayout.setVerticalGroup(
-                contaOrigemContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(contaOrigemContainerLayout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addGroup(contaOrigemContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(transferenciaAgenciaOrigemInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(transferenciaAgenciaOrigemLabel)
-                                        .addComponent(transferenciaContaOrigemLabel)
-                                        .addComponent(transferenciaContaOrigemInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            contaOrigemContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(contaOrigemContainerLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(contaOrigemContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(transferenciaAgenciaOrigemInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(transferenciaAgenciaOrigemLabel)
+                    .addComponent(transferenciaContaOrigemLabel)
+                    .addComponent(transferenciaContaOrigemInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         contaDestinoContainer.setBorder(javax.swing.BorderFactory.createTitledBorder("Conta Destino"));
@@ -671,28 +694,28 @@ public class TelaInicial extends javax.swing.JFrame {
         javax.swing.GroupLayout contaDestinoContainerLayout = new javax.swing.GroupLayout(contaDestinoContainer);
         contaDestinoContainer.setLayout(contaDestinoContainerLayout);
         contaDestinoContainerLayout.setHorizontalGroup(
-                contaDestinoContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(contaDestinoContainerLayout.createSequentialGroup()
-                                .addContainerGap(28, Short.MAX_VALUE)
-                                .addComponent(transferenciaAgenciaDestinoLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(transferenciaAgenciaDestinoInput, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(transferenciaContaDestinoLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(transferenciaContaDestinoInput, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())
+            contaDestinoContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(contaDestinoContainerLayout.createSequentialGroup()
+                .addContainerGap(65, Short.MAX_VALUE)
+                .addComponent(transferenciaAgenciaDestinoLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(transferenciaAgenciaDestinoInput, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(transferenciaContaDestinoLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(transferenciaContaDestinoInput, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         contaDestinoContainerLayout.setVerticalGroup(
-                contaDestinoContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(contaDestinoContainerLayout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addGroup(contaDestinoContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(transferenciaAgenciaDestinoInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(transferenciaAgenciaDestinoLabel)
-                                        .addComponent(transferenciaContaDestinoLabel)
-                                        .addComponent(transferenciaContaDestinoInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            contaDestinoContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(contaDestinoContainerLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(contaDestinoContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(transferenciaAgenciaDestinoInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(transferenciaAgenciaDestinoLabel)
+                    .addComponent(transferenciaContaDestinoLabel)
+                    .addComponent(transferenciaContaDestinoInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         transferenciaVoltarButton.setText("Voltar");
@@ -719,28 +742,28 @@ public class TelaInicial extends javax.swing.JFrame {
         javax.swing.GroupLayout tansferenciaContainerButtonLayout = new javax.swing.GroupLayout(tansferenciaContainerButton);
         tansferenciaContainerButton.setLayout(tansferenciaContainerButtonLayout);
         tansferenciaContainerButtonLayout.setHorizontalGroup(
-                tansferenciaContainerButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(tansferenciaContainerButtonLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(transferirButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(transferenciaVoltarButton)
-                                .addGap(18, 18, 18)
-                                .addComponent(transferenciaCancelarButton)
-                                .addContainerGap())
+            tansferenciaContainerButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tansferenciaContainerButtonLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(transferirButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(transferenciaVoltarButton)
+                .addGap(18, 18, 18)
+                .addComponent(transferenciaCancelarButton)
+                .addContainerGap())
         );
         tansferenciaContainerButtonLayout.setVerticalGroup(
-                tansferenciaContainerButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(tansferenciaContainerButtonLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(tansferenciaContainerButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(transferirButton)
-                                        .addComponent(transferenciaVoltarButton)
-                                        .addComponent(transferenciaCancelarButton))
-                                .addGap(0, 26, Short.MAX_VALUE))
+            tansferenciaContainerButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tansferenciaContainerButtonLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(tansferenciaContainerButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(transferirButton)
+                    .addComponent(transferenciaVoltarButton)
+                    .addComponent(transferenciaCancelarButton))
+                .addGap(0, 26, Short.MAX_VALUE))
         );
 
-        transferenciaValorContainer.setBorder(javax.swing.BorderFactory.createTitledBorder("Valor a ser depositado"));
+        transferenciaValorContainer.setBorder(javax.swing.BorderFactory.createTitledBorder("Valor a ser transferido"));
 
         transferenciaValorLabel.setText("Valor: R$");
 
@@ -749,45 +772,45 @@ public class TelaInicial extends javax.swing.JFrame {
         javax.swing.GroupLayout transferenciaValorContainerLayout = new javax.swing.GroupLayout(transferenciaValorContainer);
         transferenciaValorContainer.setLayout(transferenciaValorContainerLayout);
         transferenciaValorContainerLayout.setHorizontalGroup(
-                transferenciaValorContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(transferenciaValorContainerLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(transferenciaValorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(transferenciaValorInput, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            transferenciaValorContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(transferenciaValorContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(transferenciaValorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(transferenciaValorInput, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         transferenciaValorContainerLayout.setVerticalGroup(
-                transferenciaValorContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, transferenciaValorContainerLayout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(transferenciaValorContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(transferenciaValorInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(transferenciaValorLabel))
-                                .addGap(13, 13, 13))
+            transferenciaValorContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, transferenciaValorContainerLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(transferenciaValorContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(transferenciaValorInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(transferenciaValorLabel))
+                .addGap(13, 13, 13))
         );
 
         javax.swing.GroupLayout transferenciaContainerLayout = new javax.swing.GroupLayout(transferenciaContainer);
         transferenciaContainer.setLayout(transferenciaContainerLayout);
         transferenciaContainerLayout.setHorizontalGroup(
-                transferenciaContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(contaOrigemContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(transferenciaValorContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(contaDestinoContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(tansferenciaContainerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            transferenciaContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(contaOrigemContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(transferenciaValorContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(contaDestinoContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(tansferenciaContainerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         transferenciaContainerLayout.setVerticalGroup(
-                transferenciaContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(transferenciaContainerLayout.createSequentialGroup()
-                                .addGap(16, 16, 16)
-                                .addComponent(contaOrigemContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(contaDestinoContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(transferenciaValorContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(tansferenciaContainerButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(27, Short.MAX_VALUE))
+            transferenciaContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(transferenciaContainerLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(contaOrigemContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(contaDestinoContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(transferenciaValorContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tansferenciaContainerButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         tabOperacoes.addTab("Transferência", transferenciaContainer);
@@ -795,56 +818,197 @@ public class TelaInicial extends javax.swing.JFrame {
         javax.swing.GroupLayout telaOperacoesContainerLayout = new javax.swing.GroupLayout(telaOperacoesContainer);
         telaOperacoesContainer.setLayout(telaOperacoesContainerLayout);
         telaOperacoesContainerLayout.setHorizontalGroup(
-                telaOperacoesContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, telaOperacoesContainerLayout.createSequentialGroup()
-                                .addContainerGap(38, Short.MAX_VALUE)
-                                .addGroup(telaOperacoesContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(tabOperacoes)
-                                        .addComponent(saldoContainer1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(29, 29, 29))
+            telaOperacoesContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, telaOperacoesContainerLayout.createSequentialGroup()
+                .addContainerGap(14, Short.MAX_VALUE)
+                .addGroup(telaOperacoesContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(saldoContainer1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tabOperacoes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16))
         );
         telaOperacoesContainerLayout.setVerticalGroup(
-                telaOperacoesContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, telaOperacoesContainerLayout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(saldoContainer1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(tabOperacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
+            telaOperacoesContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, telaOperacoesContainerLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(saldoContainer1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tabOperacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         operacoesContainer.add(telaOperacoesContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, -1));
 
         tabTelaInicial.addTab("Operações", operacoesContainer);
 
+        extratoPesquisaContainer.setBorder(javax.swing.BorderFactory.createTitledBorder("Pesquisar"));
+
+        extratoAgenciaInput.setToolTipText("XXXX");
+
+        extratoAgenciaLabel.setText("Agência:");
+
+        extratoContaLabel.setText("Conta:");
+
+        extratoContaInput.setToolTipText("XXX");
+
+        extratoPesquisaButton.setText("Pesquisar");
+        extratoPesquisaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                extratoPesquisaButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout extratoPesquisaContainerLayout = new javax.swing.GroupLayout(extratoPesquisaContainer);
+        extratoPesquisaContainer.setLayout(extratoPesquisaContainerLayout);
+        extratoPesquisaContainerLayout.setHorizontalGroup(
+            extratoPesquisaContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(extratoPesquisaContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(extratoPesquisaContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(extratoPesquisaContainerLayout.createSequentialGroup()
+                        .addComponent(extratoAgenciaLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(extratoAgenciaInput, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(extratoContaLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(extratoContaInput, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(extratoPesquisaContainerLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(extratoPesquisaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35))))
+        );
+        extratoPesquisaContainerLayout.setVerticalGroup(
+            extratoPesquisaContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(extratoPesquisaContainerLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(extratoPesquisaContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(extratoAgenciaInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(extratoAgenciaLabel)
+                    .addComponent(extratoContaLabel)
+                    .addComponent(extratoContaInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(extratoPesquisaButton)
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout pesquisaContainerLayout = new javax.swing.GroupLayout(pesquisaContainer);
+        pesquisaContainer.setLayout(pesquisaContainerLayout);
+        pesquisaContainerLayout.setHorizontalGroup(
+            pesquisaContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pesquisaContainerLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(extratoPesquisaContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(42, Short.MAX_VALUE))
+        );
+        pesquisaContainerLayout.setVerticalGroup(
+            pesquisaContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pesquisaContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(extratoPesquisaContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        extratoTable.setAutoCreateRowSorter(true);
+        extratoTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, "1", "123", "12.3", "T", "Transferencia"},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "ID_CONTA_BANCARIA", "DATA_HORA", "VALOR", "TP_OPERACAO", "OBSERVACAO"
+            }
+        ));
+        extratoScrollPane.setViewportView(extratoTable);
+
+        javax.swing.GroupLayout extratoTabelaContainerLayout = new javax.swing.GroupLayout(extratoTabelaContainer);
+        extratoTabelaContainer.setLayout(extratoTabelaContainerLayout);
+        extratoTabelaContainerLayout.setHorizontalGroup(
+            extratoTabelaContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(extratoTabelaContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(extratoScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        extratoTabelaContainerLayout.setVerticalGroup(
+            extratoTabelaContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(extratoTabelaContainerLayout.createSequentialGroup()
+                .addComponent(extratoScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 9, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout telaExtratoContainerLayout = new javax.swing.GroupLayout(telaExtratoContainer);
+        telaExtratoContainer.setLayout(telaExtratoContainerLayout);
+        telaExtratoContainerLayout.setHorizontalGroup(
+            telaExtratoContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(telaExtratoContainerLayout.createSequentialGroup()
+                .addGroup(telaExtratoContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, telaExtratoContainerLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(extratoTabelaContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(pesquisaContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 14, Short.MAX_VALUE))
+        );
+        telaExtratoContainerLayout.setVerticalGroup(
+            telaExtratoContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, telaExtratoContainerLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pesquisaContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(extratoTabelaContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
+        );
+
+        javax.swing.GroupLayout extratoContainerLayout = new javax.swing.GroupLayout(extratoContainer);
+        extratoContainer.setLayout(extratoContainerLayout);
+        extratoContainerLayout.setHorizontalGroup(
+            extratoContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(extratoContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(telaExtratoContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        extratoContainerLayout.setVerticalGroup(
+            extratoContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(extratoContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(telaExtratoContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        tabTelaInicial.addTab("Extrato", extratoContainer);
+
         javax.swing.GroupLayout telaInicialContainerLayout = new javax.swing.GroupLayout(telaInicialContainer);
         telaInicialContainer.setLayout(telaInicialContainerLayout);
         telaInicialContainerLayout.setHorizontalGroup(
-                telaInicialContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(telaInicialContainerLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(tabTelaInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(2, 2, 2))
+            telaInicialContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(telaInicialContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(tabTelaInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2))
         );
         telaInicialContainerLayout.setVerticalGroup(
-                telaInicialContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(telaInicialContainerLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(tabTelaInicial, javax.swing.GroupLayout.DEFAULT_SIZE, 499, Short.MAX_VALUE)
-                                .addContainerGap())
+            telaInicialContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(telaInicialContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(tabTelaInicial)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addComponent(telaInicialContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(14, Short.MAX_VALUE))
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(telaInicialContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(telaInicialContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(telaInicialContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -985,6 +1149,39 @@ public class TelaInicial extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_depositoVoltarButtonActionPerformed
 
+    private void atualizarTabela(List<OperacaoContaDTO> operacoes) {
+    DefaultTableModel model = (DefaultTableModel) extratoTable.getModel();
+    
+    // Limpe os dados existentes na tabela
+    model.setRowCount(0);
+    
+    // Preencha a tabela com os resultados da pesquisa
+    for (OperacaoContaDTO operacao : operacoes) {
+        // "ID, ID_CONTA_BANCARIA","DATA_HORA","VALOR","TP_OPERACAO","OBSERVACAO"
+        Object[] rowData = {
+            operacao.getId(),
+            operacao.getContaBancariaId().getId(),
+            operacao.getDataHora(),
+            operacao.getValor(),
+            operacao.getTpOperacao(),
+            operacao.getObservacao()
+        };
+        model.addRow(rowData);
+    }
+}
+    
+    private void extratoPesquisaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_extratoPesquisaButtonActionPerformed
+        // Captura os valores dos campos de entrada
+        String agencia = extratoAgenciaInput.getText();
+        String conta = extratoContaInput.getText();
+
+        // Realize a pesquisa com base nos valores capturados
+        java.util.List<OperacaoContaDTO> operacoes = operacaoContaService.pesquisarOperacoes(agencia, conta);
+
+        // Atualize a tabela com os resultados
+        atualizarTabela(operacoes);
+    }//GEN-LAST:event_extratoPesquisaButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField CadastroNomeInput;
@@ -1021,7 +1218,18 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JTextField depositoValorInput;
     private javax.swing.JLabel depositoValorLabel;
     private javax.swing.JButton depositoVoltarButton;
+    private javax.swing.JTextField extratoAgenciaInput;
+    private javax.swing.JLabel extratoAgenciaLabel;
+    private javax.swing.JTextField extratoContaInput;
+    private javax.swing.JLabel extratoContaLabel;
+    private javax.swing.JPanel extratoContainer;
+    private javax.swing.JButton extratoPesquisaButton;
+    private javax.swing.JPanel extratoPesquisaContainer;
+    private javax.swing.JScrollPane extratoScrollPane;
+    private javax.swing.JPanel extratoTabelaContainer;
+    private javax.swing.JTable extratoTable;
     private javax.swing.JPanel operacoesContainer;
+    private javax.swing.JPanel pesquisaContainer;
     private javax.swing.JLabel saldoAtualLabel;
     private javax.swing.JTextField saldoAtuallnput;
     private javax.swing.JPanel saldoContainer1;
@@ -1042,8 +1250,10 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JTabbedPane tabTelaInicial;
     private javax.swing.JPanel tansferenciaContainerButton;
     private javax.swing.JPanel telaCadastroContainer;
+    private javax.swing.JPanel telaExtratoContainer;
     private javax.swing.JPanel telaInicialContainer;
     private javax.swing.JPanel telaOperacoesContainer;
+    private javax.swing.ButtonGroup tipoContabuttonGroup;
     private javax.swing.JTextField transferenciaAgenciaDestinoInput;
     private javax.swing.JLabel transferenciaAgenciaDestinoLabel;
     private javax.swing.JTextField transferenciaAgenciaOrigemInput;
