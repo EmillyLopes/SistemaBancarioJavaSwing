@@ -110,7 +110,7 @@ public class ContaBancariaService {
 
         contaBancariaRepository.save(contaBancariaEntity);
 
-        operacaoContaService.gerarOperacao(contaBancariaEntity, Constantes.TRANSFERENCIA.getValue().charAt(0),Constantes.DEPOSITO_OBSERVACAO.getValue());
+        operacaoContaService.gerarOperacao(contaBancariaEntity, Constantes.DEPOSITO.getValue().charAt(0),Constantes.DEPOSITO_OBSERVACAO.getValue(),valor);
     }
 
     @Transactional
@@ -137,7 +137,7 @@ public class ContaBancariaService {
 
         contaBancariaRepository.save(contaBancariaEntity);
 
-        operacaoContaService.gerarOperacao(contaBancariaEntity, Constantes.TRANSFERENCIA.getValue().charAt(0),Constantes.SAQUE_OBSERVACAO.getValue());
+        operacaoContaService.gerarOperacao(contaBancariaEntity, Constantes.SAQUE.getValue().charAt(0),Constantes.SAQUE_OBSERVACAO.getValue(),valor);
 
     }
 
@@ -159,12 +159,12 @@ public class ContaBancariaService {
         contaOrigem.setSaldo(contaOrigem.getSaldo().subtract(valor));
         logger.info("ContaBancariaService - transferir: Saldo atual - R${} da conta - {} ", contaOrigem.getSaldo(), contaOrigem);
         contaBancariaRepository.save(contaOrigem);
-        operacaoContaService.gerarOperacao(contaOrigem, Constantes.TRANSFERENCIA.getValue().charAt(0),Constantes.TRANSFERENCIA_OBSERVACAO.getValue());
+        operacaoContaService.gerarOperacao(contaOrigem, Constantes.TRANSFERENCIA.getValue().charAt(0),Constantes.TRANSFERENCIA_OBSERVACAO.getValue(),valor);
 
         contaDestino.setSaldo(contaDestino.getSaldo().add(valor));
         logger.info("ContaBancariaService - transferir: Saldo atual - R${} da conta - {} ", contaDestino.getSaldo(), contaDestino);
         contaBancariaRepository.save(contaDestino);
-        operacaoContaService.gerarOperacao(contaDestino, Constantes.TRANSFERENCIA.getValue().charAt(0),Constantes.TRANSFERENCIA_OBSERVACAO.getValue());
+        operacaoContaService.gerarOperacao(contaDestino, Constantes.TRANSFERENCIA.getValue().charAt(0),Constantes.TRANSFERENCIA_OBSERVACAO.getValue(),valor);
     }
 
 }

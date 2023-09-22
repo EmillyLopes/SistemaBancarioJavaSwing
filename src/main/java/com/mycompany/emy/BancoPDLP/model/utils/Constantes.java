@@ -15,7 +15,7 @@ public enum Constantes {
     TRANSFERENCIA("T"),
     DEPOSITO_OBSERVACAO("Deposito feito"),
     SAQUE_OBSERVACAO("Saque feito"),
-    TRANSFERENCIA_OBSERVACAO("Transferencia feito");
+    TRANSFERENCIA_OBSERVACAO("Transferencia feita");
 
     private final String value;
 

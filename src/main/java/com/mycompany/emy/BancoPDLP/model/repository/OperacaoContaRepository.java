@@ -11,4 +11,7 @@ import java.util.List;
 @Repository
 public interface OperacaoContaRepository extends JpaRepository<OperacaoContaEntity, Long> {
     List<OperacaoContaDTO> findByContaBancaria(ContaBancariaEntity contaBancariaEntity);
+
+    List<OperacaoContaEntity> findByContaBancaria_Id(Integer contaBancaria_id);
+
 }

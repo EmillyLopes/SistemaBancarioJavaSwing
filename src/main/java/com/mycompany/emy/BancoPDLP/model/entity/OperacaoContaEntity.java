@@ -33,7 +33,7 @@ public class OperacaoContaEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Integer id;
 
     @ManyToOne // Muitas operações para uma conta bancária
     @JoinColumn(name = "contaBancariaId") // Nome da coluna que armazena a relação

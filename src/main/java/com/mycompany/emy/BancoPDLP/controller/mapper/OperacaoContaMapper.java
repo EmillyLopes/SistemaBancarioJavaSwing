@@ -16,6 +16,7 @@ public class OperacaoContaMapper {
         logger.info("OperacaoContaMapper - convertOperacaoContaEntityToDto: Realizando conversão da Entity - {} para o DTO",operacaoContaEntity);
         OperacaoContaDTO operacaoConta = new OperacaoContaDTO();
         operacaoConta.setId(operacaoContaEntity.getId());
+        operacaoConta.setContaBancariaId(operacaoContaEntity.getContaBancaria());
         operacaoConta.setDataHora(operacaoContaEntity.getDataHora());
         operacaoConta.setObservacao(operacaoContaEntity.getObservacao());
         operacaoConta.setTpOperacao(operacaoContaEntity.getTpOperacao());
@@ -27,6 +28,8 @@ public class OperacaoContaMapper {
     public OperacaoContaEntity convertOperacaoContaDtoToEntity(OperacaoContaDTO operacaoContaDto) {
         logger.info("OperacaoContaMapper - OperacaoContaEntity: Realizando conversão do DTO - {} para a Entity",operacaoContaDto);
         OperacaoContaEntity operacaoContaEntity = new OperacaoContaEntity();
+        operacaoContaEntity.setId(operacaoContaDto.getId());
+        operacaoContaEntity.setContaBancaria(operacaoContaDto.getContaBancariaId());
         operacaoContaEntity.setDataHora(LocalDateTime.now());
         operacaoContaEntity.setObservacao(operacaoContaDto.getObservacao());
         operacaoContaEntity.setTpOperacao(operacaoContaDto.getTpOperacao());
